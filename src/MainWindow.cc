@@ -2,6 +2,7 @@
 #include "Grayscale.hh"
 #include "ImageHistogram.hh"
 #include "BinaryImage.hh"
+#include "ConvolveImage.hh"
 #include "MainWindow.hh"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -22,6 +23,10 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(imageHistogram()));
     connect(actionBinary, SIGNAL(triggered()),
             this, SLOT(toBinaryImage()));
+    connect(actionConvolved, SIGNAL(triggered()),
+            this, SLOT(toConvolvedImage()));
+
+    disUndoAndRedo();
 }
 
 MainWindow::~MainWindow(void)
@@ -99,6 +104,16 @@ void MainWindow::toGray(void)
 void MainWindow::toBinaryImage(void)
 {
     BinaryImage *dialog = new BinaryImage(m_pic, this, Qt::Window);
+    connect(dialog, SIGNAL(imageConverted(QImage)),
+            this, SLOT(setDisplayPic(QImage)));
+    connect(dialog, SIGNAL(rejected()),
+            this, SLOT(disUndoAndRedo()));
+    dialog->exec();
+}
+
+void MainWindow::toConvolvedImage(void)
+{
+    ConvolveImage *dialog = new ConvolveImage(m_pic, this, Qt::Window);
     connect(dialog, SIGNAL(imageConverted(QImage)),
             this, SLOT(setDisplayPic(QImage)));
     connect(dialog, SIGNAL(rejected()),

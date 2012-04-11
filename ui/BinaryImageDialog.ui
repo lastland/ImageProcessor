@@ -28,20 +28,49 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>229</width>
-       <height>20</height>
+       <height>229</height>
       </size>
      </property>
     </spacer>
    </item>
    <item row="1" column="0">
-    <widget class="QSlider" name="thresholdSlider">
-     <property name="maximum">
-      <number>255</number>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <property name="spacing">
+      <number>0</number>
      </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMaximumSize</enum>
      </property>
-    </widget>
+     <item>
+      <widget class="QSlider" name="thresholdSlider">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximum">
+        <number>255</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="thresholdDisplayer">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="digitCount">
+        <number>3</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item row="2" column="0">
     <widget class="QGroupBox" name="groupBox">
@@ -118,6 +147,22 @@
     <hint type="destinationlabel">
      <x>286</x>
      <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>thresholdSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>thresholdDisplayer</receiver>
+   <slot>display(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>101</x>
+     <y>265</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>216</x>
+     <y>265</y>
     </hint>
    </hints>
   </connection>

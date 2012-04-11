@@ -11,6 +11,28 @@ LIBS += -lqwt
 # Input
 INCLUDEPATH += include
 VPATH += include src ui
-HEADERS += Grayscale.hh ImageHistogram.hh HistogramWindow.hh ThresholdSelector.hh OtsuThresholder.hh EntropyThresholder.hh BinaryImage.hh MainWindow.hh
+HEADERS += Grayscale.hh \
+ImageHistogram.hh \
+HistogramWindow.hh \
+ThresholdSelector.hh \
+OtsuThresholder.hh \
+EntropyThresholder.hh \
+BinaryImage.hh \
+Convolution.hh \
+RobertsOperator.hh \
+PrewittOperator.hh \
+SobelOperator.hh \
+ConvolveImage.hh \
+MainWindow.hh
+
 FORMS += BinaryImageDialog.ui MainWindow.ui
-SOURCES += ImageHistogram.cc HistogramWindow.cc OtsuThresholder.cc EntropyThresholder.cc BinaryImage.cc MainWindow.cc main.cc
+
+SOURCES += ImageHistogram.cc \
+HistogramWindow.cc \
+OtsuThresholder.cc \
+EntropyThresholder.cc \
+BinaryImage.cc \
+Convolution.cc \
+ConvolveImage.cc \
+MainWindow.cc \
+main.cc

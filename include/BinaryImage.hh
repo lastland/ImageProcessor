@@ -21,17 +21,17 @@ public slots:
     void getOtsuThreshold(void);
     void getEntropyThreshold(void);
     void getThreshold(int threshold);
-    void convert(void);
     void accept(void);
     void reject(void);
+    virtual void convert(void);
+protected:
+    int m_threshold;
+    QImage *m_pic;
+    QImage *m_convertedPic;
 private:
     OtsuThresholder *m_otsu;
     EntropyThresholder *m_entropy;
     ImageHistogram *m_histogram;
-    QImage *m_pic;
-    QImage *m_convertedPic;
-
-    int m_threshold;
 };
 
 #endif /* _BINARYIMAGE_H_ */
