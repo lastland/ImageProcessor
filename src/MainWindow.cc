@@ -26,6 +26,15 @@ MainWindow::MainWindow(QWidget *parent)
     connect(actionConvolved, SIGNAL(triggered()),
             this, SLOT(toConvolvedImage()));
 
+    actionSave->setEnabled(false);
+    actionSaveAs->setEnabled(false);
+    actionUndo->setEnabled(false);
+    actionRedo->setEnabled(false);
+    actionHistogram->setEnabled(false);
+    actionGrayscale->setEnabled(false);
+    actionBinary->setEnabled(false);
+    actionConvolved->setEnabled(false);
+
     disUndoAndRedo();
 }
 
@@ -41,8 +50,38 @@ QString MainWindow::getDirOfFile(QString file)
     return dir;
 }
 
+void MainWindow::setDisplayPic(QImage pic)
+{
+    delete m_prevPic;
+    if (m_pic != NULL)
+        m_prevPic = new QImage(*m_pic);
+    delete m_pic;
+    m_pic = new QImage(pic);
+    
+    if (m_prevPic != NULL)
+        actionUndo->setEnabled(true);
+    actionRedo->setEnabled(false);
+    if (m_pic->isGrayscale())
+    {
+        actionGrayscale->setEnabled(false);
+        actionBinary->setEnabled(true);
+        actionConvolved->setEnabled(true);
+    }
+    else
+    {
+        actionGrayscale->setEnabled(true);
+        actionBinary->setEnabled(false);
+        actionConvolved->setEnabled(false);
+    }
+    actionHistogram->setEnabled(true);
+    resetHistogram();
+
+    displayPic();
+}
+
 void MainWindow::displayPic(void)
 {
+    delete m_disPic;
     if (m_pic->width() > imageDisplayer->size().width() ||
         m_pic->height() > imageDisplayer->size().height())
     {
@@ -69,12 +108,7 @@ void MainWindow::openFile(void)
     m_recentDir = getDirOfFile(fileName);
     
     m_picName = fileName;
-    delete m_disPic;
-    delete m_pic;
-    m_pic = NULL;
-    m_disPic = NULL;
-    
-    m_pic = new QImage(m_picName);
+    setDisplayPic(QImage(m_picName));
     displayPic();
 
     if (m_histogram != NULL)
@@ -87,6 +121,7 @@ void MainWindow::toGray(void)
 {
     if (m_pic == NULL || m_pic->isGrayscale())
         return;
+        
     QImage pic(*m_pic);
     for (int i = 0; i < m_pic->width(); i++)
         for (int j = 0; j < m_pic->height(); j++)
@@ -132,18 +167,6 @@ void MainWindow::resetHistogram(void)
 {
     if (m_histogram != NULL)
         m_histogram->resetHistogramPic(m_pic);
-}
-
-void MainWindow::setDisplayPic(QImage pic)
-{
-    delete m_prevPic;
-    m_prevPic = new QImage(*m_pic);
-    delete m_pic;
-    m_pic = new QImage(pic);
-    actionUndo->setEnabled(true);
-    actionRedo->setEnabled(false);
-    resetHistogram();
-    displayPic();
 }
 
 void MainWindow::undo(void)

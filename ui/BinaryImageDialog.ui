@@ -68,6 +68,9 @@
        <property name="digitCount">
         <number>3</number>
        </property>
+       <property name="segmentStyle">
+        <enum>QLCDNumber::Filled</enum>
+       </property>
       </widget>
      </item>
     </layout>
