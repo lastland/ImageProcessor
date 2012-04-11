@@ -1,0 +1,6 @@
+imageprocess
+*.o
+moc_*
+ui_*
+Makefile
+*~
