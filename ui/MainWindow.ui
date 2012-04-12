@@ -65,11 +65,20 @@
     <property name="title">
      <string>&amp;Edit</string>
     </property>
+    <widget class="QMenu" name="menu_Algebraic_Operation">
+     <property name="title">
+      <string>&amp;Algebraic Operation</string>
+     </property>
+     <addaction name="actionAddition"/>
+     <addaction name="actionSubtraction"/>
+     <addaction name="actionMultiplication"/>
+     <addaction name="actionDivision"/>
+    </widget>
     <addaction name="actionUndo"/>
     <addaction name="actionRedo"/>
     <addaction name="separator"/>
     <addaction name="actionPointOp"/>
-    <addaction name="actionAlgebraicOp"/>
+    <addaction name="menu_Algebraic_Operation"/>
     <addaction name="actionGeometricOp"/>
    </widget>
    <widget class="QMenu" name="menuFilters">
@@ -131,11 +140,6 @@
     <string>&amp;Point Operation</string>
    </property>
   </action>
-  <action name="actionAlgebraicOp">
-   <property name="text">
-    <string>&amp;Algebraic Operation</string>
-   </property>
-  </action>
   <action name="actionGeometricOp">
    <property name="text">
     <string>&amp;Geometric Operation</string>
@@ -162,6 +166,26 @@
   <action name="actionMedian">
    <property name="text">
     <string>M&amp;edian Filter</string>
+   </property>
+  </action>
+  <action name="actionAddition">
+   <property name="text">
+    <string>&amp;Addition</string>
+   </property>
+  </action>
+  <action name="actionSubtraction">
+   <property name="text">
+    <string>&amp;Subtraction</string>
+   </property>
+  </action>
+  <action name="actionMultiplication">
+   <property name="text">
+    <string>&amp;Multiplication</string>
+   </property>
+  </action>
+  <action name="actionDivision">
+   <property name="text">
+    <string>&amp;Division</string>
    </property>
   </action>
  </widget>

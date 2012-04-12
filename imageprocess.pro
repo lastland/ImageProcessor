@@ -16,6 +16,7 @@ Grayscale.hh \
 ConvertDialog.hh \
 GaussianFilterDialog.hh \
 PointOpDialog.hh \
+AlgebraicOp.hh \
 ImageHistogram.hh \
 HistogramWindow.hh \
 ThresholdSelector.hh \
@@ -42,6 +43,7 @@ SOURCES += \
 GaussianMatrix.cc \
 ConvertDialog.cc \
 PointOpDialog.cc \
+AlgebraicOp.cc \
 ImageHistogram.cc \
 HistogramWindow.cc \
 OtsuThresholder.cc \

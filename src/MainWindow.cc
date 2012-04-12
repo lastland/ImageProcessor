@@ -1,5 +1,6 @@
 #include "Grayscale.hh"
 #include "PointOpDialog.hh"
+#include "AlgebraicOp.hh"
 #include "ImageHistogram.hh"
 #include "BinaryImage.hh"
 #include "ConvolveImage.hh"
@@ -10,7 +11,8 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), Ui::MainWindow(),
-      m_recentDir("."), m_pic(NULL), m_prevPic(NULL), m_disPic(NULL),
+      m_recentDir("."),
+      m_pic(NULL), m_anotherPic(NULL), m_prevPic(NULL), m_disPic(NULL),
       m_histogram(NULL)
 {
     setupUi(this);
@@ -24,6 +26,14 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(redo()));
     connect(actionPointOp, SIGNAL(triggered()),
             this, SLOT(pointOp()));
+    connect(actionAddition, SIGNAL(triggered()),
+            this, SLOT(algebraicOpAdd()));
+    connect(actionSubtraction, SIGNAL(triggered()),
+            this, SLOT(algebraicOpSub()));
+    connect(actionMultiplication, SIGNAL(triggered()),
+            this, SLOT(algebraicOpMul()));
+    connect(actionDivision, SIGNAL(triggered()),
+            this, SLOT(algebraicOpDiv()));
     connect(actionGrayscale, SIGNAL(triggered()),
             this, SLOT(toGray()));
     connect(actionHistogram, SIGNAL(triggered()),
@@ -140,6 +150,19 @@ void MainWindow::openFile(void)
     actionMedian->setEnabled(true);
 }
 
+void MainWindow::openAnotherFile(void)
+{
+    QString fileName = QFileDialog::getOpenFileName(
+        this, tr("Open Image"), m_recentDir, tr("Image Files (*.png *.jpg *.bmp)"));
+    if (fileName.size() == 0)
+        return;
+
+    m_recentDir = getDirOfFile(fileName);
+
+    delete m_anotherPic;
+    m_anotherPic = new QImage(fileName);
+}
+
 void MainWindow::saveFile(void)
 {
     QString fileName = QFileDialog::getSaveFileName(
@@ -179,6 +202,30 @@ void MainWindow::pointOp(void)
     connect(dialog, SIGNAL(rejected()),
             this, SLOT(disUndoAndRedo()));
     dialog->exec();
+}
+
+void MainWindow::algebraicOpAdd(void)
+{
+    openAnotherFile();
+    setDisplayPic(AlgebraicOp::operate(*m_pic, *m_anotherPic, '+'));
+}
+
+void MainWindow::algebraicOpSub(void)
+{
+    openAnotherFile();
+    setDisplayPic(AlgebraicOp::operate(*m_pic, *m_anotherPic, '-'));
+}
+
+void MainWindow::algebraicOpMul(void)
+{
+    openAnotherFile();
+    setDisplayPic(AlgebraicOp::operate(*m_pic, *m_anotherPic, '*'));
+}
+
+void MainWindow::algebraicOpDiv(void)
+{
+    openAnotherFile();
+    setDisplayPic(AlgebraicOp::operate(*m_pic, *m_anotherPic, '/'));
 }
 
 void MainWindow::toBinaryImage(void)

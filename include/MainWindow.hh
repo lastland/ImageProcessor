@@ -15,6 +15,7 @@ public:
 public slots:
     void displayPic(void);
     void openFile(void);
+    void openAnotherFile(void);
     void saveFile(void);
     
     void toGray(void);
@@ -31,6 +32,10 @@ public slots:
     void redo(void);
 
     void pointOp(void);
+    void algebraicOpAdd(void);
+    void algebraicOpSub(void);
+    void algebraicOpMul(void);
+    void algebraicOpDiv(void);
 
 protected slots:
     void disUndoAndRedo(void);
@@ -39,6 +44,7 @@ private:
     QString m_picName;
     QString m_recentDir;
     QImage *m_pic;
+    QImage *m_anotherPic;
     QImage *m_prevPic;
     QPixmap *m_disPic;
     HistogramWindow *m_histogram;
