@@ -1,5 +1,5 @@
-#include <iostream>
 #include "Grayscale.hh"
+#include "PointOpDialog.hh"
 #include "ImageHistogram.hh"
 #include "BinaryImage.hh"
 #include "ConvolveImage.hh"
@@ -17,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(undo()));
     connect(actionRedo, SIGNAL(triggered()),
             this, SLOT(redo()));
+    connect(actionPointOp, SIGNAL(triggered()),
+            this, SLOT(pointOp()));
     connect(actionGrayscale, SIGNAL(triggered()),
             this, SLOT(toGray()));
     connect(actionHistogram, SIGNAL(triggered()),
@@ -30,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
     actionSaveAs->setEnabled(false);
     actionUndo->setEnabled(false);
     actionRedo->setEnabled(false);
+    actionPointOp->setEnabled(false);
     actionHistogram->setEnabled(false);
     actionGrayscale->setEnabled(false);
     actionBinary->setEnabled(false);
@@ -66,12 +69,14 @@ void MainWindow::setDisplayPic(QImage pic)
         actionGrayscale->setEnabled(false);
         actionBinary->setEnabled(true);
         actionConvolved->setEnabled(true);
+        actionPointOp->setEnabled(true);
     }
     else
     {
         actionGrayscale->setEnabled(true);
         actionBinary->setEnabled(false);
         actionConvolved->setEnabled(false);
+        actionPointOp->setEnabled(false);
     }
     actionHistogram->setEnabled(true);
     resetHistogram();
@@ -134,6 +139,16 @@ void MainWindow::toGray(void)
             pic.setPixel(i, j, color.rgb());
         }
     setDisplayPic(pic);
+}
+
+void MainWindow::pointOp(void)
+{
+    PointOpDialog *dialog = new PointOpDialog(m_pic);
+    connect(dialog, SIGNAL(imageConverted(QImage)),
+            this, SLOT(setDisplayPic(QImage)));
+    connect(dialog, SIGNAL(rejected()),
+            this, SLOT(disUndoAndRedo()));
+    dialog->exec();
 }
 
 void MainWindow::toBinaryImage(void)

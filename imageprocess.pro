@@ -11,7 +11,10 @@ LIBS += -lqwt
 # Input
 INCLUDEPATH += include
 VPATH += include src ui
-HEADERS += Grayscale.hh \
+HEADERS += \
+Grayscale.hh \
+ConvertDialog.hh \
+PointOpDialog.hh \
 ImageHistogram.hh \
 HistogramWindow.hh \
 ThresholdSelector.hh \
@@ -25,9 +28,15 @@ SobelOperator.hh \
 ConvolveImage.hh \
 MainWindow.hh
 
-FORMS += BinaryImageDialog.ui MainWindow.ui
+FORMS += \
+PointOpDialog.ui \
+BinaryImageDialog.ui \
+MainWindow.ui
 
-SOURCES += ImageHistogram.cc \
+SOURCES += \
+ConvertDialog.cc \
+PointOpDialog.cc \
+ImageHistogram.cc \
 HistogramWindow.cc \
 OtsuThresholder.cc \
 EntropyThresholder.cc \

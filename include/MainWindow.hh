@@ -25,6 +25,8 @@ public slots:
     void undo(void);
     void redo(void);
 
+    void pointOp(void);
+
 protected slots:
     void disUndoAndRedo(void);
     

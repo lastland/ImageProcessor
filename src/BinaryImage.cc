@@ -4,10 +4,8 @@
 #include "BinaryImage.hh"
 
 BinaryImage::BinaryImage(QImage *pic, QWidget *parent, Qt::WindowFlags f)
-    : QDialog(parent, f), Ui::BinaryImageDialog()
+    : ConvertDialog(pic, parent, f), Ui::BinaryImageDialog()
 {
-    m_pic = new QImage(*pic);
-    m_convertedPic = new QImage(*pic);
     m_histogram = new ImageHistogram(pic);
     m_otsu = new OtsuThresholder(m_histogram);
     m_entropy = new EntropyThresholder(m_histogram);
@@ -53,6 +51,8 @@ void BinaryImage::getThreshold(int threshold)
 
 void BinaryImage::convert(void)
 {
+    delete m_convertedPic;
+    m_convertedPic = new QImage(*m_pic);
     for (int i = 0; i < m_convertedPic->width(); i++)
         for (int j = 0; j < m_convertedPic->height(); j++)
         {
@@ -63,7 +63,6 @@ void BinaryImage::convert(void)
         }
     emit imageConverted(*m_convertedPic);
 }
-
 void BinaryImage::accept(void)
 {
     emit imageConverted(*m_pic);
@@ -73,7 +72,6 @@ void BinaryImage::accept(void)
 
 void BinaryImage::reject(void)
 {
-    emit imageConverted(*m_pic);
     emit imageConverted(*m_pic);
     QDialog::reject();
 }

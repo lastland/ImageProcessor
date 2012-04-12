@@ -68,6 +68,10 @@
     </property>
     <addaction name="actionUndo"/>
     <addaction name="actionRedo"/>
+    <addaction name="separator"/>
+    <addaction name="actionPointOp"/>
+    <addaction name="actionAlgebraicOp"/>
+    <addaction name="actionGeometricOp"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menuEdit"/>
@@ -122,6 +126,21 @@
   <action name="actionConvolved">
    <property name="text">
     <string>&amp;Convolved Image</string>
+   </property>
+  </action>
+  <action name="actionPointOp">
+   <property name="text">
+    <string>&amp;Point Operation</string>
+   </property>
+  </action>
+  <action name="actionAlgebraicOp">
+   <property name="text">
+    <string>&amp;Algebraic Operation</string>
+   </property>
+  </action>
+  <action name="actionGeometricOp">
+   <property name="text">
+    <string>&amp;Geometric Operation</string>
    </property>
   </action>
  </widget>
