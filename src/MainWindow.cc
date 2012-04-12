@@ -47,6 +47,9 @@ MainWindow::MainWindow(QWidget *parent)
     actionGrayscale->setEnabled(false);
     actionBinary->setEnabled(false);
     actionConvolved->setEnabled(false);
+    actionGaussian->setEnabled(false);
+    actionMean->setEnabled(false);
+    actionMedian->setEnabled(false);
 
     disUndoAndRedo();
 }
@@ -132,6 +135,9 @@ void MainWindow::openFile(void)
     }
 
     actionSave->setEnabled(true);
+    actionGaussian->setEnabled(true);
+    actionMean->setEnabled(true);
+    actionMedian->setEnabled(true);
 }
 
 void MainWindow::saveFile(void)
