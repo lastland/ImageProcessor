@@ -15,6 +15,8 @@ public:
 public slots:
     void displayPic(void);
     void openFile(void);
+    void saveFile(void);
+    
     void toGray(void);
     void toBinaryImage(void);
     void toConvolvedImage(void);

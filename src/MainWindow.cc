@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
     setupUi(this);
     connect(actionOpen, SIGNAL(triggered()),
             this, SLOT(openFile()));
+    connect(actionSave, SIGNAL(triggered()),
+            this, SLOT(saveFile()));
     connect(actionUndo, SIGNAL(triggered()),
             this, SLOT(undo()));
     connect(actionRedo, SIGNAL(triggered()),
@@ -29,7 +31,6 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(toConvolvedImage()));
 
     actionSave->setEnabled(false);
-    actionSaveAs->setEnabled(false);
     actionUndo->setEnabled(false);
     actionRedo->setEnabled(false);
     actionPointOp->setEnabled(false);
@@ -120,6 +121,20 @@ void MainWindow::openFile(void)
     {
         resetHistogram();
     }
+
+    actionSave->setEnabled(true);
+}
+
+void MainWindow::saveFile(void)
+{
+    QString fileName = QFileDialog::getSaveFileName(
+        this, tr("Save Image"), m_recentDir, tr("Image Files (*.png *.jpg *.bmp)"));
+    if (fileName.size() == 0)
+        return;
+
+    m_recentDir = getDirOfFile(fileName);
+
+    m_pic->save(fileName);
 }
 
 void MainWindow::toGray(void)
