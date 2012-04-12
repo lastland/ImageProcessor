@@ -3,6 +3,7 @@
 #include "ImageHistogram.hh"
 #include "BinaryImage.hh"
 #include "ConvolveImage.hh"
+#include "GaussianFilterDialog.hh"
 #include "MainWindow.hh"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -19,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(undo()));
     connect(actionRedo, SIGNAL(triggered()),
             this, SLOT(redo()));
+    connect(actionGaussian, SIGNAL(triggered()),
+            this, SLOT(gaussian()));
     connect(actionPointOp, SIGNAL(triggered()),
             this, SLOT(pointOp()));
     connect(actionGrayscale, SIGNAL(triggered()),
@@ -179,6 +182,16 @@ void MainWindow::toBinaryImage(void)
 void MainWindow::toConvolvedImage(void)
 {
     ConvolveImage *dialog = new ConvolveImage(m_pic, this, Qt::Window);
+    connect(dialog, SIGNAL(imageConverted(QImage)),
+            this, SLOT(setDisplayPic(QImage)));
+    connect(dialog, SIGNAL(rejected()),
+            this, SLOT(disUndoAndRedo()));
+    dialog->exec();
+}
+
+void MainWindow::gaussian(void)
+{
+    GaussianFilterDialog *dialog = new GaussianFilterDialog(m_pic, this, Qt::Window);
     connect(dialog, SIGNAL(imageConverted(QImage)),
             this, SLOT(setDisplayPic(QImage)));
     connect(dialog, SIGNAL(rejected()),

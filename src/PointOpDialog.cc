@@ -32,16 +32,3 @@ void PointOpDialog::convert(void)
         }
     emit imageConverted(*m_convertedPic);
 }
-
-void PointOpDialog::accept(void)
-{
-    emit imageConverted(*m_pic);
-    emit imageConverted(*m_convertedPic);
-    QDialog::accept();
-}
-
-void PointOpDialog::reject(void)
-{
-    emit imageConverted(*m_pic);
-    QDialog::reject();
-}

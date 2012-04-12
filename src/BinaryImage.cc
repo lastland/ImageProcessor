@@ -63,15 +63,3 @@ void BinaryImage::convert(void)
         }
     emit imageConverted(*m_convertedPic);
 }
-void BinaryImage::accept(void)
-{
-    emit imageConverted(*m_pic);
-    emit imageConverted(*m_convertedPic);
-    QDialog::accept();
-}
-
-void BinaryImage::reject(void)
-{
-    emit imageConverted(*m_pic);
-    QDialog::reject();
-}

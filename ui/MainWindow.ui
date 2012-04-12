@@ -72,9 +72,18 @@
     <addaction name="actionAlgebraicOp"/>
     <addaction name="actionGeometricOp"/>
    </widget>
+   <widget class="QMenu" name="menuFilters">
+    <property name="title">
+     <string>F&amp;ilters</string>
+    </property>
+    <addaction name="actionGaussian"/>
+    <addaction name="actionMean"/>
+    <addaction name="actionMedian"/>
+   </widget>
    <addaction name="menu_File"/>
    <addaction name="menuEdit"/>
    <addaction name="menu_Convert"/>
+   <addaction name="menuFilters"/>
    <addaction name="menuWindow"/>
   </widget>
   <action name="actionOpen">
@@ -138,6 +147,21 @@
    </property>
    <property name="toolTip">
     <string>Save</string>
+   </property>
+  </action>
+  <action name="actionGaussian">
+   <property name="text">
+    <string>&amp;Gaussian Filter</string>
+   </property>
+  </action>
+  <action name="actionMean">
+   <property name="text">
+    <string>&amp;Mean Filter</string>
+   </property>
+  </action>
+  <action name="actionMedian">
+   <property name="text">
+    <string>M&amp;edian Filter</string>
    </property>
   </action>
  </widget>

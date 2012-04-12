@@ -14,6 +14,7 @@ VPATH += include src ui
 HEADERS += \
 Grayscale.hh \
 ConvertDialog.hh \
+GaussianFilterDialog.hh \
 PointOpDialog.hh \
 ImageHistogram.hh \
 HistogramWindow.hh \
@@ -26,14 +27,17 @@ RobertsOperator.hh \
 PrewittOperator.hh \
 SobelOperator.hh \
 ConvolveImage.hh \
+GaussianMatrix.hh \
 MainWindow.hh
 
 FORMS += \
 PointOpDialog.ui \
 BinaryImageDialog.ui \
+GaussianFilterDialog.ui \
 MainWindow.ui
 
 SOURCES += \
+GaussianMatrix.cc \
 ConvertDialog.cc \
 PointOpDialog.cc \
 ImageHistogram.cc \
@@ -43,5 +47,6 @@ EntropyThresholder.cc \
 BinaryImage.cc \
 Convolution.cc \
 ConvolveImage.cc \
+GaussianFilterDialog.cc \
 MainWindow.cc \
 main.cc

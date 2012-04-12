@@ -11,8 +11,6 @@ public:
     PointOpDialog(QImage *pic, QWidget *parent = NULL, Qt::WindowFlags f = Qt::Window);
     virtual ~PointOpDialog();
 public slots:
-    virtual void accept(void);
-    virtual void reject(void);
     virtual void convert(void);
 };
 

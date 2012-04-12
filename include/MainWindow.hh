@@ -20,6 +20,7 @@ public slots:
     void toGray(void);
     void toBinaryImage(void);
     void toConvolvedImage(void);
+    void gaussian(void);
     void imageHistogram(void);
     void resetHistogram(void);
     void setDisplayPic(QImage pic);
