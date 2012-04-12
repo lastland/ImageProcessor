@@ -28,6 +28,7 @@ PrewittOperator.hh \
 SobelOperator.hh \
 ConvolveImage.hh \
 GaussianMatrix.hh \
+MeanFilter.hh \
 MainWindow.hh
 
 FORMS += \
@@ -48,5 +49,6 @@ BinaryImage.cc \
 Convolution.cc \
 ConvolveImage.cc \
 GaussianFilterDialog.cc \
+MeanFilter.cc \
 MainWindow.cc \
 main.cc

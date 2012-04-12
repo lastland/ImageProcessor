@@ -4,6 +4,7 @@
 #include "BinaryImage.hh"
 #include "ConvolveImage.hh"
 #include "GaussianFilterDialog.hh"
+#include "MeanFilter.hh"
 #include "MainWindow.hh"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -20,8 +21,6 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(undo()));
     connect(actionRedo, SIGNAL(triggered()),
             this, SLOT(redo()));
-    connect(actionGaussian, SIGNAL(triggered()),
-            this, SLOT(gaussian()));
     connect(actionPointOp, SIGNAL(triggered()),
             this, SLOT(pointOp()));
     connect(actionGrayscale, SIGNAL(triggered()),
@@ -32,6 +31,10 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(toBinaryImage()));
     connect(actionConvolved, SIGNAL(triggered()),
             this, SLOT(toConvolvedImage()));
+    connect(actionGaussian, SIGNAL(triggered()),
+            this, SLOT(gaussian()));
+    connect(actionMean, SIGNAL(triggered()),
+            this, SLOT(mean()));
 
     actionSave->setEnabled(false);
     actionUndo->setEnabled(false);
@@ -197,6 +200,11 @@ void MainWindow::gaussian(void)
     connect(dialog, SIGNAL(rejected()),
             this, SLOT(disUndoAndRedo()));
     dialog->exec();
+}
+
+void MainWindow::mean(void)
+{
+    setDisplayPic(MeanFilter::filter(m_pic));
 }
 
 void MainWindow::imageHistogram(void)
