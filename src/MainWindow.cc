@@ -5,6 +5,7 @@
 #include "ConvolveImage.hh"
 #include "GaussianFilterDialog.hh"
 #include "MeanFilter.hh"
+#include "MedianFilter.hh"
 #include "MainWindow.hh"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -35,6 +36,8 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(gaussian()));
     connect(actionMean, SIGNAL(triggered()),
             this, SLOT(mean()));
+    connect(actionMedian, SIGNAL(triggered()),
+            this, SLOT(median()));
 
     actionSave->setEnabled(false);
     actionUndo->setEnabled(false);
@@ -205,6 +208,11 @@ void MainWindow::gaussian(void)
 void MainWindow::mean(void)
 {
     setDisplayPic(MeanFilter::filter(m_pic));
+}
+
+void MainWindow::median(void)
+{
+    setDisplayPic(MedianFilter::filter(m_pic));
 }
 
 void MainWindow::imageHistogram(void)

@@ -24,6 +24,7 @@ public slots:
     void resetHistogram(void);
     void gaussian(void);
     void mean(void);
+    void median(void);
     void setDisplayPic(QImage pic);
 
     void undo(void);

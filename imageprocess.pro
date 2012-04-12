@@ -29,6 +29,7 @@ SobelOperator.hh \
 ConvolveImage.hh \
 GaussianMatrix.hh \
 MeanFilter.hh \
+MedianFilter.hh \
 MainWindow.hh
 
 FORMS += \
@@ -50,5 +51,6 @@ Convolution.cc \
 ConvolveImage.cc \
 GaussianFilterDialog.cc \
 MeanFilter.cc \
+MedianFilter.cc \
 MainWindow.cc \
 main.cc
