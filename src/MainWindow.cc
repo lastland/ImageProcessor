@@ -1,6 +1,7 @@
 #include "Grayscale.hh"
 #include "PointOpDialog.hh"
 #include "AlgebraicOp.hh"
+#include "GeometricOpDialog.hh"
 #include "ImageHistogram.hh"
 #include "BinaryImage.hh"
 #include "ConvolveImage.hh"
@@ -34,6 +35,8 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(algebraicOpMul()));
     connect(actionDivision, SIGNAL(triggered()),
             this, SLOT(algebraicOpDiv()));
+    connect(actionGeometricOp, SIGNAL(triggered()),
+            this, SLOT(geometricOp()));
     connect(actionGrayscale, SIGNAL(triggered()),
             this, SLOT(toGray()));
     connect(actionHistogram, SIGNAL(triggered()),
@@ -227,6 +230,12 @@ void MainWindow::algebraicOpDiv(void)
 
 void MainWindow::geometricOp(void)
 {
+    GeometricOpDialog *dialog = new GeometricOpDialog(m_pic, this, Qt::Window);
+    connect(dialog, SIGNAL(imageConverted(QImage)),
+            this, SLOT(setDisplayPic(QImage)));
+    connect(dialog, SIGNAL(rejected()),
+            this, SLOT(disUndoAndRedo()));
+    dialog->exec();
 }
 
 void MainWindow::toBinaryImage(void)

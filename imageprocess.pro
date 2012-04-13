@@ -17,6 +17,8 @@ ConvertDialog.hh \
 GaussianFilterDialog.hh \
 PointOpDialog.hh \
 AlgebraicOp.hh \
+GeometricScale.hh \
+GeometricOpDialog.hh \
 ImageHistogram.hh \
 HistogramWindow.hh \
 ThresholdSelector.hh \
@@ -35,6 +37,7 @@ MainWindow.hh
 
 FORMS += \
 PointOpDialog.ui \
+GeometricOpDialog.ui \
 BinaryImageDialog.ui \
 GaussianFilterDialog.ui \
 MainWindow.ui
@@ -44,6 +47,8 @@ GaussianMatrix.cc \
 ConvertDialog.cc \
 PointOpDialog.cc \
 AlgebraicOp.cc \
+GeometricScale.cc \
+GeometricOpDialog.cc \
 ImageHistogram.cc \
 HistogramWindow.cc \
 OtsuThresholder.cc \
