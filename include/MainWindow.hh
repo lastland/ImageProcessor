@@ -36,6 +36,7 @@ public slots:
     void algebraicOpSub(void);
     void algebraicOpMul(void);
     void algebraicOpDiv(void);
+    void geometricOp(void);
 
 protected slots:
     void disUndoAndRedo(void);

@@ -92,15 +92,14 @@ void MainWindow::setDisplayPic(QImage pic)
         actionGrayscale->setEnabled(false);
         actionBinary->setEnabled(true);
         actionConvolved->setEnabled(true);
-        actionPointOp->setEnabled(true);
     }
     else
     {
         actionGrayscale->setEnabled(true);
         actionBinary->setEnabled(false);
         actionConvolved->setEnabled(false);
-        actionPointOp->setEnabled(false);
     }
+    actionPointOp->setEnabled(true);
     actionHistogram->setEnabled(true);
     resetHistogram();
 
@@ -140,9 +139,7 @@ void MainWindow::openFile(void)
     displayPic();
 
     if (m_histogram != NULL)
-    {
         resetHistogram();
-    }
 
     actionSave->setEnabled(true);
     actionGaussian->setEnabled(true);
@@ -226,6 +223,10 @@ void MainWindow::algebraicOpDiv(void)
 {
     openAnotherFile();
     setDisplayPic(AlgebraicOp::operate(*m_pic, *m_anotherPic, '/'));
+}
+
+void MainWindow::geometricOp(void)
+{
 }
 
 void MainWindow::toBinaryImage(void)
