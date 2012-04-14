@@ -17,10 +17,14 @@ MainWindow::MainWindow(QWidget *parent)
       m_histogram(NULL)
 {
     setupUi(this);
+    /* File menu. */
     connect(actionOpen, SIGNAL(triggered()),
             this, SLOT(openFile()));
     connect(actionSave, SIGNAL(triggered()),
             this, SLOT(saveFile()));
+    connect(actionQuit, SIGNAL(triggered()),
+            qApp, SLOT(quit()));
+    /* Edit menu. */
     connect(actionUndo, SIGNAL(triggered()),
             this, SLOT(undo()));
     connect(actionRedo, SIGNAL(triggered()),
@@ -37,25 +41,34 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(algebraicOpDiv()));
     connect(actionGeometricOp, SIGNAL(triggered()),
             this, SLOT(geometricOp()));
+    /* Convert menu. */
     connect(actionGrayscale, SIGNAL(triggered()),
             this, SLOT(toGray()));
-    connect(actionHistogram, SIGNAL(triggered()),
-            this, SLOT(imageHistogram()));
     connect(actionBinary, SIGNAL(triggered()),
             this, SLOT(toBinaryImage()));
     connect(actionConvolved, SIGNAL(triggered()),
             this, SLOT(toConvolvedImage()));
+    /* Filter menu. */
     connect(actionGaussian, SIGNAL(triggered()),
             this, SLOT(gaussian()));
     connect(actionMean, SIGNAL(triggered()),
             this, SLOT(mean()));
     connect(actionMedian, SIGNAL(triggered()),
             this, SLOT(median()));
+    /* Window menu. */
+    connect(actionHistogram, SIGNAL(triggered()),
+            this, SLOT(imageHistogram()));
 
     actionSave->setEnabled(false);
     actionUndo->setEnabled(false);
     actionRedo->setEnabled(false);
     actionPointOp->setEnabled(false);
+    menuAlgebraicOp->setEnabled(false);
+    actionAddition->setEnabled(false);
+    actionSubtraction->setEnabled(false);
+    actionMultiplication->setEnabled(false);
+    actionDivision->setEnabled(false);
+    actionGeometricOp->setEnabled(false);
     actionHistogram->setEnabled(false);
     actionGrayscale->setEnabled(false);
     actionBinary->setEnabled(false);
@@ -63,8 +76,6 @@ MainWindow::MainWindow(QWidget *parent)
     actionGaussian->setEnabled(false);
     actionMean->setEnabled(false);
     actionMedian->setEnabled(false);
-
-    disUndoAndRedo();
 }
 
 MainWindow::~MainWindow(void)
@@ -102,8 +113,6 @@ void MainWindow::setDisplayPic(QImage pic)
         actionBinary->setEnabled(false);
         actionConvolved->setEnabled(false);
     }
-    actionPointOp->setEnabled(true);
-    actionHistogram->setEnabled(true);
     resetHistogram();
 
     displayPic();
@@ -145,9 +154,17 @@ void MainWindow::openFile(void)
         resetHistogram();
 
     actionSave->setEnabled(true);
+    actionPointOp->setEnabled(true);
+    menuAlgebraicOp->setEnabled(true);
+    actionAddition->setEnabled(true);
+    actionSubtraction->setEnabled(true);
+    actionMultiplication->setEnabled(true);
+    actionDivision->setEnabled(true);
+    actionGeometricOp->setEnabled(true);
     actionGaussian->setEnabled(true);
     actionMean->setEnabled(true);
     actionMedian->setEnabled(true);
+    actionHistogram->setEnabled(true);
 }
 
 void MainWindow::openAnotherFile(void)

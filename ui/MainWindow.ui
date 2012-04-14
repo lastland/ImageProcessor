@@ -37,7 +37,7 @@
      <height>26</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_File">
+   <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>&amp;File</string>
     </property>
@@ -46,7 +46,7 @@
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
-   <widget class="QMenu" name="menu_Convert">
+   <widget class="QMenu" name="menuConvert">
     <property name="title">
      <string>&amp;Convert to</string>
     </property>
@@ -65,7 +65,7 @@
     <property name="title">
      <string>&amp;Edit</string>
     </property>
-    <widget class="QMenu" name="menu_Algebraic_Operation">
+    <widget class="QMenu" name="menuAlgebraicOp">
      <property name="title">
       <string>&amp;Algebraic Operation</string>
      </property>
@@ -78,7 +78,7 @@
     <addaction name="actionRedo"/>
     <addaction name="separator"/>
     <addaction name="actionPointOp"/>
-    <addaction name="menu_Algebraic_Operation"/>
+    <addaction name="menuAlgebraicOp"/>
     <addaction name="actionGeometricOp"/>
    </widget>
    <widget class="QMenu" name="menuFilters">
@@ -89,9 +89,9 @@
     <addaction name="actionMean"/>
     <addaction name="actionMedian"/>
    </widget>
-   <addaction name="menu_File"/>
+   <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
-   <addaction name="menu_Convert"/>
+   <addaction name="menuConvert"/>
    <addaction name="menuFilters"/>
    <addaction name="menuWindow"/>
   </widget>
