@@ -18,6 +18,7 @@ GaussianFilterDialog.hh \
 PointOpDialog.hh \
 AlgebraicOp.hh \
 GeometricScale.hh \
+GeometricRotate.hh \
 GeometricOpDialog.hh \
 ImageHistogram.hh \
 HistogramWindow.hh \
@@ -48,6 +49,7 @@ ConvertDialog.cc \
 PointOpDialog.cc \
 AlgebraicOp.cc \
 GeometricScale.cc \
+GeometricRotate.cc \
 GeometricOpDialog.cc \
 ImageHistogram.cc \
 HistogramWindow.cc \

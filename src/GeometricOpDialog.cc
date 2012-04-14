@@ -1,4 +1,5 @@
 #include "GeometricScale.hh"
+#include "GeometricRotate.hh"
 #include "GeometricOpDialog.hh"
 
 GeometricOpDialog::GeometricOpDialog(QImage *pic, QWidget *parent, Qt::WindowFlags f)
@@ -36,6 +37,8 @@ void GeometricOpDialog::convert(void)
     InterpolationMethod m = bilinearButton->isChecked() ? BILINEAR : NEAREST_NEIGHBOR;
     m_convertedPic = new QImage(
         GeometricScale::convert(m_pic, scaleXBox->value(), scaleYBox->value(), m));
+    m_convertedPic = new QImage(
+        GeometricRotate::convert(m_convertedPic, rotateBox->value(), m));
     emit imageConverted(*m_convertedPic);
 }
 
