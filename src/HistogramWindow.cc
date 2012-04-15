@@ -5,6 +5,7 @@ HistogramWindow::HistogramWindow(QImage *pic, QWidget *parent, Qt::WindowFlags f
     : QDialog(parent, f)
 {
     histogram = new ImageHistogram(pic, this);
+    setWindowTitle(tr("Histogram"));
     setFixedWidth(250);
     setFixedHeight(250);
 }

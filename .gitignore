@@ -1,4 +1,4 @@
-imageprocess
+ImageProcessor
 *.o
 moc_*
 ui_*
