@@ -1,3 +1,4 @@
+#include <QtGui/QKeySequence>
 #include "Grayscale.hh"
 #include "PointOpDialog.hh"
 #include "AlgebraicOp.hh"
@@ -17,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
       m_histogram(NULL)
 {
     setupUi(this);
+    
     /* File menu. */
     connect(actionOpen, SIGNAL(triggered()),
             this, SLOT(openFile()));
@@ -24,6 +26,11 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(saveFile()));
     connect(actionQuit, SIGNAL(triggered()),
             qApp, SLOT(quit()));
+    actionOpen->setShortcut(QKeySequence(QKeySequence::Open));
+    actionSave->setShortcut(QKeySequence(QKeySequence::Save));
+    actionQuit->setShortcut(QKeySequence(QKeySequence::Quit));
+    actionSave->setEnabled(false);
+    
     /* Edit menu. */
     connect(actionUndo, SIGNAL(triggered()),
             this, SLOT(undo()));
@@ -41,25 +48,8 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(algebraicOpDiv()));
     connect(actionGeometricOp, SIGNAL(triggered()),
             this, SLOT(geometricOp()));
-    /* Convert menu. */
-    connect(actionGrayscale, SIGNAL(triggered()),
-            this, SLOT(toGray()));
-    connect(actionBinary, SIGNAL(triggered()),
-            this, SLOT(toBinaryImage()));
-    connect(actionConvolved, SIGNAL(triggered()),
-            this, SLOT(toConvolvedImage()));
-    /* Filter menu. */
-    connect(actionGaussian, SIGNAL(triggered()),
-            this, SLOT(gaussian()));
-    connect(actionMean, SIGNAL(triggered()),
-            this, SLOT(mean()));
-    connect(actionMedian, SIGNAL(triggered()),
-            this, SLOT(median()));
-    /* Window menu. */
-    connect(actionHistogram, SIGNAL(triggered()),
-            this, SLOT(imageHistogram()));
-
-    actionSave->setEnabled(false);
+    actionUndo->setShortcut(QKeySequence(QKeySequence::Undo));
+    actionRedo->setShortcut(QKeySequence(QKeySequence::Redo));
     actionUndo->setEnabled(false);
     actionRedo->setEnabled(false);
     actionPointOp->setEnabled(false);
@@ -69,13 +59,33 @@ MainWindow::MainWindow(QWidget *parent)
     actionMultiplication->setEnabled(false);
     actionDivision->setEnabled(false);
     actionGeometricOp->setEnabled(false);
-    actionHistogram->setEnabled(false);
+    
+    /* Convert menu. */
+    connect(actionGrayscale, SIGNAL(triggered()),
+            this, SLOT(toGray()));
+    connect(actionBinary, SIGNAL(triggered()),
+            this, SLOT(toBinaryImage()));
+    connect(actionConvolved, SIGNAL(triggered()),
+            this, SLOT(toConvolvedImage()));
     actionGrayscale->setEnabled(false);
     actionBinary->setEnabled(false);
     actionConvolved->setEnabled(false);
+    
+    /* Filter menu. */
+    connect(actionGaussian, SIGNAL(triggered()),
+            this, SLOT(gaussian()));
+    connect(actionMean, SIGNAL(triggered()),
+            this, SLOT(mean()));
+    connect(actionMedian, SIGNAL(triggered()),
+            this, SLOT(median()));
     actionGaussian->setEnabled(false);
     actionMean->setEnabled(false);
     actionMedian->setEnabled(false);
+    
+    /* Window menu. */
+    connect(actionHistogram, SIGNAL(triggered()),
+            this, SLOT(imageHistogram()));
+    actionHistogram->setEnabled(false);
 }
 
 MainWindow::~MainWindow(void)
