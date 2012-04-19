@@ -4,7 +4,7 @@
 #include <QtGui/QImage>
 #include <QtGui/QWidget>
 #include <qwt/qwt_plot.h>
-#include <qwt/qwt_plot_histogram.h>
+#include <qwt/qwt_plot_curve.h>
 
 class ImageHistogram : public QWidget
 {
@@ -21,6 +21,8 @@ public:
 private:
     QImage *m_pic;
     QwtPlot *m_plot;
+    QwtPlotCurve *m_histogram;
+
     double m_x[256];
     double m_y[256];
 

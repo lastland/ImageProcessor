@@ -1,4 +1,3 @@
-#include <vector>
 #include <qwt/qwt_plot_curve.h>
 #include "Grayscale.hh"
 #include "ImageHistogram.hh"
@@ -9,6 +8,10 @@ ImageHistogram::ImageHistogram(QImage *pic, QWidget *parent)
     : QWidget(parent)
 {
     m_pic = new QImage(*pic);
+    m_plot = new QwtPlot(this);
+    m_histogram = new QwtPlotCurve();
+    m_histogram->attach(m_plot);
+
     imageStatistics();
     replot();
 }
@@ -22,18 +25,13 @@ void ImageHistogram::resetPic(QImage *pic)
 
 void ImageHistogram::replot(void)
 {
-    m_plot = new QwtPlot(this);
-    
     m_plot->setAxisScale(QwtPlot::xBottom, 0, 255);
     m_plot->setCanvasLineWidth(3);
     
-    QwtPlotCurve *histogram = new QwtPlotCurve();
-    histogram->setSamples(m_x, m_y, 256);
-    histogram->setStyle(QwtPlotCurve::Sticks);
+    m_histogram->setSamples(m_x, m_y, 256);
+    m_histogram->setStyle(QwtPlotCurve::Sticks);
 
-    histogram->attach(m_plot);
-
-    m_plot->show();
+    m_plot->replot();
 }
 
 double *ImageHistogram::getXValue(void)
