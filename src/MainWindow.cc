@@ -18,6 +18,12 @@ MainWindow::MainWindow(QWidget *parent)
       m_histogram(NULL)
 {
     setupUi(this);
+
+    /* Icons. */
+    actionOpen->setIcon(style()->standardIcon(QStyle::SP_DialogOpenButton));
+    actionSave->setIcon(style()->standardIcon(QStyle::SP_DialogSaveButton));
+    actionUndo->setIcon(style()->standardIcon(QStyle::SP_ArrowBack));
+    actionRedo->setIcon(style()->standardIcon(QStyle::SP_ArrowForward));
     
     /* File menu. */
     connect(actionOpen, SIGNAL(triggered()),
