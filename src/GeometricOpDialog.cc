@@ -33,12 +33,14 @@ GeometricOpDialog::~GeometricOpDialog()
 
 void GeometricOpDialog::convert(void)
 {
+    QImage *tmp = NULL;
     delete m_convertedPic;
     InterpolationMethod m = bilinearButton->isChecked() ? BILINEAR : NEAREST_NEIGHBOR;
-    m_convertedPic = new QImage(
+    tmp = new QImage(
         GeometricScale::convert(m_pic, scaleXBox->value(), scaleYBox->value(), m));
     m_convertedPic = new QImage(
-        GeometricRotate::convert(m_convertedPic, rotateBox->value(), m));
+        GeometricRotate::convert(tmp, rotateBox->value(), m));
+    delete tmp;
     emit imageConverted(*m_convertedPic);
 }
 
