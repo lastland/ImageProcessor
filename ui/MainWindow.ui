@@ -80,6 +80,8 @@
     <addaction name="actionPointOp"/>
     <addaction name="menuAlgebraicOp"/>
     <addaction name="actionGeometricOp"/>
+    <addaction name="separator"/>
+    <addaction name="actionDilation"/>
    </widget>
    <widget class="QMenu" name="menuFilters">
     <property name="title">
@@ -103,7 +105,7 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="actionOpen"/>
    <addaction name="actionSave"/>
@@ -201,6 +203,11 @@
   <action name="actionDivision">
    <property name="text">
     <string>&amp;Division</string>
+   </property>
+  </action>
+  <action name="actionDilation">
+   <property name="text">
+    <string>&amp;Dilation</string>
    </property>
   </action>
  </widget>

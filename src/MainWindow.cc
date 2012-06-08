@@ -3,6 +3,7 @@
 #include "PointOpDialog.hh"
 #include "AlgebraicOp.hh"
 #include "GeometricOpDialog.hh"
+#include "BinaryDilationDialog.hh"
 #include "ImageHistogram.hh"
 #include "BinaryImage.hh"
 #include "ConvolveImage.hh"
@@ -54,6 +55,8 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(algebraicOpDiv()));
     connect(actionGeometricOp, SIGNAL(triggered()),
             this, SLOT(geometricOp()));
+    connect(actionDilation, SIGNAL(triggered()),
+            this, SLOT(dilation()));
     actionUndo->setShortcut(QKeySequence(QKeySequence::Undo));
     actionRedo->setShortcut(QKeySequence(QKeySequence::Redo));
     actionUndo->setEnabled(false);
@@ -65,6 +68,7 @@ MainWindow::MainWindow(QWidget *parent)
     actionMultiplication->setEnabled(false);
     actionDivision->setEnabled(false);
     actionGeometricOp->setEnabled(false);
+    actionDilation->setEnabled(false);
     
     /* Convert menu. */
     connect(actionGrayscale, SIGNAL(triggered()),
@@ -122,12 +126,16 @@ void MainWindow::setDisplayPic(QImage pic)
         actionGrayscale->setEnabled(false);
         actionBinary->setEnabled(true);
         actionConvolved->setEnabled(true);
+        
+        actionDilation->setEnabled(true);
     }
     else
     {
         actionGrayscale->setEnabled(true);
         actionBinary->setEnabled(false);
         actionConvolved->setEnabled(false);
+
+        actionDilation->setEnabled(false);
     }
     resetHistogram();
 
@@ -264,6 +272,16 @@ void MainWindow::algebraicOpDiv(void)
 void MainWindow::geometricOp(void)
 {
     GeometricOpDialog *dialog = new GeometricOpDialog(m_pic, this, Qt::Window);
+    connect(dialog, SIGNAL(imageConverted(QImage)),
+            this, SLOT(setDisplayPic(QImage)));
+    connect(dialog, SIGNAL(rejected()),
+            this, SLOT(disUndoAndRedo()));
+    dialog->exec();
+}
+
+void MainWindow::dilation(void)
+{
+    BinaryDilationDialog *dialog = new BinaryDilationDialog(m_pic, this, Qt::Window);
     connect(dialog, SIGNAL(imageConverted(QImage)),
             this, SLOT(setDisplayPic(QImage)));
     connect(dialog, SIGNAL(rejected()),

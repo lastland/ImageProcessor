@@ -5,7 +5,7 @@ const int GAUSS_N = 3;
 typedef struct
 {
     double v[GAUSS_N][GAUSS_N];
-} Matrix;
+} G_Matrix;
 
 class GaussianMatrix
 {
@@ -13,7 +13,7 @@ public:
     GaussianMatrix() {};
     virtual ~GaussianMatrix() {};
     
-    static Matrix getMatrix(double radius);
+    static G_Matrix getMatrix(double radius);
 };
 
 #endif /* _GAUSSIANMATRIX_H_ */

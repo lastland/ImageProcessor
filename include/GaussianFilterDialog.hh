@@ -15,7 +15,7 @@ public slots:
     virtual void convert(void);
     int exec(void);
 private:
-    void convert(Matrix matrix);
+    void convert(G_Matrix matrix);
 };
 
 #endif /* _GAUSSIANFILTERDIALOG_H_ */

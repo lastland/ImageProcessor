@@ -11,15 +11,20 @@ LIBS += -lqwt
 # Input
 INCLUDEPATH += include
 VPATH += include src ui
+
 HEADERS += \
 Grayscale.hh \
 ConvertDialog.hh \
+MatrixDialog.hh \
 GaussianFilterDialog.hh \
 PointOpDialog.hh \
 AlgebraicOp.hh \
 GeometricScale.hh \
 GeometricRotate.hh \
 GeometricOpDialog.hh \
+KernelOpDialog.hh \
+Dilation.hh \
+BinaryDilationDialog.hh \
 ImageHistogram.hh \
 HistogramWindow.hh \
 ThresholdSelector.hh \
@@ -46,11 +51,15 @@ MainWindow.ui
 SOURCES += \
 GaussianMatrix.cc \
 ConvertDialog.cc \
+MatrixDialog.cc \
 PointOpDialog.cc \
 AlgebraicOp.cc \
 GeometricScale.cc \
 GeometricRotate.cc \
 GeometricOpDialog.cc \
+KernelOpDialog.cc \
+Dilation.cc \
+BinaryDilationDialog.cc \
 ImageHistogram.cc \
 HistogramWindow.cc \
 OtsuThresholder.cc \
