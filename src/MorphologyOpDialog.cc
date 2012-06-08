@@ -2,6 +2,8 @@
 #include "Erosion.hh"
 #include "MorphologyOpDialog.hh"
 
+#define size _MX_size
+
 MorphologyOpDialog::MorphologyOpDialog(QImage *pic, QWidget *parent, Qt::WindowFlags f)
     : KernelOpDialog(pic, parent, f)
 {
@@ -9,6 +11,13 @@ MorphologyOpDialog::MorphologyOpDialog(QImage *pic, QWidget *parent, Qt::WindowF
     QWidget* qwidget = new QWidget;
     m_widget->setupUi(qwidget);
     m_gridLayout->addWidget(qwidget, 1, 0);
+
+    // Set up a default kernel.
+    m_spin[size / 2][size / 2]->setValue(1);
+    m_spin[size / 2 - 1][size / 2]->setValue(1);
+    m_spin[size / 2][size / 2 - 1]->setValue(1);
+    m_spin[size / 2 + 1][size / 2]->setValue(1);
+    m_spin[size / 2][size / 2 + 1]->setValue(1);
 
     setWindowTitle(tr("Morphology Operations"));
 }
