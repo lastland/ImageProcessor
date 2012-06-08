@@ -13,6 +13,7 @@ INCLUDEPATH += include
 VPATH += include src ui
 
 HEADERS += \
+Utility.hh \
 Grayscale.hh \
 ConvertDialog.hh \
 MatrixDialog.hh \

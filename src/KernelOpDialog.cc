@@ -2,8 +2,9 @@
 #include <QtGui/QPushButton>
 #include <QtGui/QDialogButtonBox>
 
-KernelOpDialog::KernelOpDialog(QImage *pic, QWidget *parent, Qt::WindowFlags f)
-    : MatrixDialog(0, 1, 1, pic, parent, f)
+KernelOpDialog::KernelOpDialog(int min, int max, int step,
+                               QImage *pic, QWidget *parent, Qt::WindowFlags f)
+    : MatrixDialog(min, max, step, pic, parent, f)
 {
     QPushButton *button = new QPushButton(tr("&Preview"), this);
 

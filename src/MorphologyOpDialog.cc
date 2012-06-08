@@ -1,3 +1,4 @@
+#include "Utility.hh"
 #include "Dilation.hh"
 #include "Erosion.hh"
 #include "MorphologyOpDialog.hh"
@@ -5,19 +6,29 @@
 #define size _MX_size
 
 MorphologyOpDialog::MorphologyOpDialog(QImage *pic, QWidget *parent, Qt::WindowFlags f)
-    : KernelOpDialog(pic, parent, f)
+    : KernelOpDialog(0, 1, 1, pic, parent, f)
 {
+    int min = 0, max = 1, step = 1;
+    if (!Utility::isBinary(pic))
+    {
+        min = 0;
+        max = 255;
+        step = 1;
+        resetMinMaxStep(min, max, step);
+    }
+    
     m_widget = new Ui::MorphologyRadioWidget;
     QWidget* qwidget = new QWidget;
     m_widget->setupUi(qwidget);
     m_gridLayout->addWidget(qwidget, 1, 0);
 
     // Set up a default kernel.
-    m_spin[size / 2][size / 2]->setValue(1);
-    m_spin[size / 2 - 1][size / 2]->setValue(1);
-    m_spin[size / 2][size / 2 - 1]->setValue(1);
-    m_spin[size / 2 + 1][size / 2]->setValue(1);
-    m_spin[size / 2][size / 2 + 1]->setValue(1);
+    int defval = max == 1 ? 1 : 0;
+    m_spin[size / 2][size / 2]->setValue(defval);
+    m_spin[size / 2 - 1][size / 2]->setValue(defval);
+    m_spin[size / 2][size / 2 - 1]->setValue(defval);
+    m_spin[size / 2 + 1][size / 2]->setValue(defval);
+    m_spin[size / 2][size / 2 + 1]->setValue(defval);
 
     setWindowTitle(tr("Morphology Operations"));
 }

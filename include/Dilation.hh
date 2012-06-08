@@ -10,7 +10,8 @@ class Dilation
 public:
     static QImage convert(QImage *pic, Matrix kernel);
 private:
-    static QRgb getMaxFromKernel(QImage *pic, int x, int y, Matrix kernel);
+    static QRgb getMaxFromKernelBin(QImage *pic, int x, int y, Matrix kernel);
+    static QRgb getMaxFromKernelGray(QImage *pic, int x, int y, Matrix kernel);
 };
 
 #endif /* _DILATION_H_ */

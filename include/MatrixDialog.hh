@@ -21,6 +21,7 @@ public:
                  QImage *pic = NULL, QWidget *parent = NULL,
                  Qt::WindowFlags f = Qt::Dialog);
     virtual ~MatrixDialog(void);
+    void resetMinMaxStep(int min, int max, int step);
     Matrix getMatrix(void);
 
 protected:

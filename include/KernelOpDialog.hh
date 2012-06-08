@@ -6,7 +6,8 @@
 class KernelOpDialog : public MatrixDialog
 {
 public:
-    KernelOpDialog(QImage *pic, QWidget *parent = NULL, Qt::WindowFlags f = Qt::Dialog);
+    KernelOpDialog(int min, int max, int step,
+                   QImage *pic, QWidget *parent = NULL, Qt::WindowFlags f = Qt::Dialog);
     virtual ~KernelOpDialog(void);
 };
 

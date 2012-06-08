@@ -27,6 +27,17 @@ MatrixDialog::~MatrixDialog(void)
 {
 }
 
+void MatrixDialog::resetMinMaxStep(int min, int max, int step)
+{
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++)
+        {
+            m_spin[i][j]->setMinimum(min);
+            m_spin[i][j]->setMaximum(max);
+            m_spin[i][j]->setSingleStep(step);
+        }
+}
+
 Matrix MatrixDialog::getMatrix(void)
 {
     Matrix matrix;
