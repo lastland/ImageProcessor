@@ -37,7 +37,7 @@ public slots:
     void algebraicOpMul(void);
     void algebraicOpDiv(void);
     void geometricOp(void);
-    void dilation(void);
+    void morphologyOp(void);
 
 protected slots:
     void disUndoAndRedo(void);

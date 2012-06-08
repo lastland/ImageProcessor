@@ -12,7 +12,7 @@ KernelOpDialog::KernelOpDialog(QImage *pic, QWidget *parent, Qt::WindowFlags f)
     buttonBox->setStandardButtons(QDialogButtonBox::Cancel | QDialogButtonBox::Ok);
     buttonBox->addButton(button, QDialogButtonBox::ApplyRole);
 
-    m_gridLayout->addWidget(buttonBox, 1, 0);
+    m_gridLayout->addWidget(buttonBox, 2, 0);
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(convert()));
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));

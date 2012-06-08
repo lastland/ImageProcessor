@@ -2,7 +2,7 @@
 
 #define size _MX_size
 
-QImage Dilation::convert(QImage *pic, Matrix matrix)
+QImage Dilation::convert(QImage *pic, Matrix kernel)
 {
     QImage res = QImage(*pic);
     for (int i = 0; i < pic->width(); i++)

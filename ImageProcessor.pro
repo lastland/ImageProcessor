@@ -24,7 +24,7 @@ GeometricRotate.hh \
 GeometricOpDialog.hh \
 KernelOpDialog.hh \
 Dilation.hh \
-BinaryDilationDialog.hh \
+MorphologyOpDialog.hh \
 ImageHistogram.hh \
 HistogramWindow.hh \
 ThresholdSelector.hh \
@@ -44,6 +44,7 @@ MainWindow.hh
 FORMS += \
 PointOpDialog.ui \
 GeometricOpDialog.ui \
+MorphologyRadioWidget.ui \
 BinaryImageDialog.ui \
 GaussianFilterDialog.ui \
 MainWindow.ui
@@ -59,7 +60,7 @@ GeometricRotate.cc \
 GeometricOpDialog.cc \
 KernelOpDialog.cc \
 Dilation.cc \
-BinaryDilationDialog.cc \
+MorphologyOpDialog.cc \
 ImageHistogram.cc \
 HistogramWindow.cc \
 OtsuThresholder.cc \

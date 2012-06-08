@@ -81,7 +81,7 @@
     <addaction name="menuAlgebraicOp"/>
     <addaction name="actionGeometricOp"/>
     <addaction name="separator"/>
-    <addaction name="actionDilation"/>
+    <addaction name="actionMorphologyOp"/>
    </widget>
    <widget class="QMenu" name="menuFilters">
     <property name="title">
@@ -205,9 +205,9 @@
     <string>&amp;Division</string>
    </property>
   </action>
-  <action name="actionDilation">
+  <action name="actionMorphologyOp">
    <property name="text">
-    <string>&amp;Dilation</string>
+    <string>&amp;Morphology Operations</string>
    </property>
   </action>
  </widget>

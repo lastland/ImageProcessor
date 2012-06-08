@@ -3,12 +3,12 @@
 
 #include "KernelOpDialog.hh"
 
-class BinaryDilationDialog : public KernelOpDialog
+class MorphologyOpDialog : public KernelOpDialog
 {
     Q_OBJECT
 public:
-    BinaryDilationDialog(QImage *pic, QWidget *parent = NULL, Qt::WindowFlags f = Qt::Dialog);
-    virtual ~BinaryDilationDialog(void);
+    MorphologyOpDialog(QImage *pic, QWidget *parent = NULL, Qt::WindowFlags f = Qt::Dialog);
+    virtual ~MorphologyOpDialog(void);
 public slots:
     virtual void convert(void);
 };
