@@ -27,5 +27,21 @@ void MorphologyOpDialog::convert(void)
     else if (m_widget->erosionButton->isChecked())
         m_convertedPic = new QImage(
             Erosion::convert(m_pic, matrix));
+    else if (m_widget->openingButton->isChecked())
+    {
+        QImage *tmp = new QImage(
+            Erosion::convert(m_pic, matrix));
+        m_convertedPic = new QImage(
+            Dilation::convert(tmp, matrix));
+        delete tmp;
+    }
+    else
+    {
+        QImage *tmp = new QImage(
+            Dilation::convert(m_pic, matrix));
+        m_convertedPic = new QImage(
+            Erosion::convert(tmp, matrix));
+        delete tmp;
+    }
     emit imageConverted(*m_convertedPic);
 }
