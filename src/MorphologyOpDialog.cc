@@ -1,15 +1,14 @@
 #include "Dilation.hh"
+#include "Erosion.hh"
 #include "MorphologyOpDialog.hh"
-#include "ui_MorphologyRadioWidget.h"
 
 MorphologyOpDialog::MorphologyOpDialog(QImage *pic, QWidget *parent, Qt::WindowFlags f)
     : KernelOpDialog(pic, parent, f)
 {
-    Ui::MorphologyRadioWidget widget;
+    m_widget = new Ui::MorphologyRadioWidget;
     QWidget* qwidget = new QWidget;
-    widget.setupUi(qwidget);
+    m_widget->setupUi(qwidget);
     m_gridLayout->addWidget(qwidget, 1, 0);
-    adjustSize();
 
     setWindowTitle(tr("Morphology Operations"));
 }
@@ -22,7 +21,11 @@ void MorphologyOpDialog::convert(void)
 {
     Matrix matrix = getMatrix();
     delete m_convertedPic;
-    m_convertedPic = new QImage(
-        Dilation::convert(m_pic, matrix));
+    if (m_widget->dilationButton->isChecked())
+        m_convertedPic = new QImage(
+            Dilation::convert(m_pic, matrix));
+    else if (m_widget->erosionButton->isChecked())
+        m_convertedPic = new QImage(
+            Erosion::convert(m_pic, matrix));
     emit imageConverted(*m_convertedPic);
 }

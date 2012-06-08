@@ -2,6 +2,7 @@
 #define _BINARYDILATIONDIALOG_H_
 
 #include "KernelOpDialog.hh"
+#include "ui_MorphologyRadioWidget.h"
 
 class MorphologyOpDialog : public KernelOpDialog
 {
@@ -11,6 +12,8 @@ public:
     virtual ~MorphologyOpDialog(void);
 public slots:
     virtual void convert(void);
+private:
+    Ui::MorphologyRadioWidget *m_widget;
 };
 
 #endif /* _BINARYDILATIONDIALOG_H_ */

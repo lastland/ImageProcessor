@@ -24,6 +24,7 @@ GeometricRotate.hh \
 GeometricOpDialog.hh \
 KernelOpDialog.hh \
 Dilation.hh \
+Erosion.hh \
 MorphologyOpDialog.hh \
 ImageHistogram.hh \
 HistogramWindow.hh \
@@ -60,6 +61,7 @@ GeometricRotate.cc \
 GeometricOpDialog.cc \
 KernelOpDialog.cc \
 Dilation.cc \
+Erosion.cc \
 MorphologyOpDialog.cc \
 ImageHistogram.cc \
 HistogramWindow.cc \
