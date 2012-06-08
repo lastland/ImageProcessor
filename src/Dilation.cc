@@ -25,5 +25,5 @@ QRgb Dilation::getMaxFromKernel(QImage *pic, int x, int y, Matrix kernel)
                 return QColor(255, 255, 255).rgb();
         }
     
-    return QColor(0, 0, 0).rgb();
+    return pic->pixel(x, y);
 }

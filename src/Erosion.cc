@@ -25,5 +25,5 @@ QRgb Erosion::getMinFromKernel(QImage *pic, int x, int y, Matrix kernel)
                 return QColor(0, 0, 0).rgb();
         }
     
-    return QColor(255, 255, 255).rgb();
+    return pic->pixel(x, y);
 }
