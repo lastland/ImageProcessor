@@ -5,6 +5,7 @@
 #include "GeometricOpDialog.hh"
 #include "MorphologyOpDialog.hh"
 #include "DistanceTransformDialog.hh"
+#include "Skeleton.hh"
 #include "ImageHistogram.hh"
 #include "BinaryImage.hh"
 #include "ConvolveImage.hh"
@@ -60,6 +61,8 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(morphologyOp()));
     connect(actionDistanceTransform, SIGNAL(triggered()),
             this, SLOT(distanceTransform()));
+    connect(actionSkeleton, SIGNAL(triggered()),
+            this, SLOT(skeleton()));
     actionUndo->setShortcut(QKeySequence(QKeySequence::Undo));
     actionRedo->setShortcut(QKeySequence(QKeySequence::Redo));
     actionUndo->setEnabled(false);
@@ -73,6 +76,7 @@ MainWindow::MainWindow(QWidget *parent)
     actionGeometricOp->setEnabled(false);
     actionMorphologyOp->setEnabled(false);
     actionDistanceTransform->setEnabled(false);
+    actionSkeleton->setEnabled(false);
     
     /* Convert menu. */
     connect(actionGrayscale, SIGNAL(triggered()),
@@ -133,6 +137,7 @@ void MainWindow::setDisplayPic(QImage pic)
         
         actionMorphologyOp->setEnabled(true);
         actionDistanceTransform->setEnabled(true);
+        actionSkeleton->setEnabled(true);
     }
     else
     {
@@ -142,6 +147,7 @@ void MainWindow::setDisplayPic(QImage pic)
 
         actionMorphologyOp->setEnabled(false);
         actionDistanceTransform->setEnabled(false);
+        actionSkeleton->setEnabled(false);
     }
     resetHistogram();
 
@@ -303,6 +309,11 @@ void MainWindow::distanceTransform(void)
     connect(dialog, SIGNAL(rejected()),
             this, SLOT(disUndoAndRedo()));
     dialog->exec();
+}
+
+void MainWindow::skeleton(void)
+{
+    setDisplayPic(Skeleton::convert(m_pic));
 }
 
 void MainWindow::toBinaryImage(void)

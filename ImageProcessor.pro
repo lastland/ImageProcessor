@@ -29,6 +29,7 @@ Erosion.hh \
 MorphologyOpDialog.hh \
 DistanceTransform.hh \
 DistanceTransformDialog.hh \
+Skeleton.hh \
 ImageHistogram.hh \
 HistogramWindow.hh \
 ThresholdSelector.hh \
@@ -69,6 +70,7 @@ Erosion.cc \
 MorphologyOpDialog.cc \
 DistanceTransform.cc \
 DistanceTransformDialog.cc \
+Skeleton.cc \
 ImageHistogram.cc \
 HistogramWindow.cc \
 OtsuThresholder.cc \

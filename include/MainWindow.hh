@@ -39,6 +39,7 @@ public slots:
     void geometricOp(void);
     void morphologyOp(void);
     void distanceTransform(void);
+    void skeleton(void);
 
 protected slots:
     void disUndoAndRedo(void);

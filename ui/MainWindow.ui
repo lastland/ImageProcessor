@@ -83,6 +83,7 @@
     <addaction name="separator"/>
     <addaction name="actionMorphologyOp"/>
     <addaction name="actionDistanceTransform"/>
+    <addaction name="actionSkeleton"/>
    </widget>
    <widget class="QMenu" name="menuFilters">
     <property name="title">
@@ -214,6 +215,11 @@
   <action name="actionDistanceTransform">
    <property name="text">
     <string>&amp;Distance Transform</string>
+   </property>
+  </action>
+  <action name="actionSkeleton">
+   <property name="text">
+    <string>Extract &amp;Skeleton</string>
    </property>
   </action>
  </widget>
