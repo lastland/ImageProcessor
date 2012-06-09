@@ -1,6 +1,5 @@
 #include <list>
 #include <cmath>
-#include <iostream>
 #include <QtGui/QColor>
 #include "DistanceTransform.hh"
 
@@ -130,7 +129,7 @@ void DistanceTransform::dij(QImage *f, double *r, DistanceMetric metric)
                     if ((i != 0 || j != 0) && inRange(f, x + i, y + j) &&
                         pos(record, x + i, y + j, w, h) == 0)
                     {
-                        int value = distanceFunc[metric](i, j) + v;
+                        double value = distanceFunc[metric](i, j) + v;
                         if (value < mininode.v || mininode.v == 0)
                         {
                             mininode.x = x + i;
@@ -146,6 +145,52 @@ void DistanceTransform::dij(QImage *f, double *r, DistanceMetric metric)
 
     for (list<node>::iterator iter = accept.begin(); iter != accept.end(); iter++)
         pos(r, iter->x, iter->y, w, h) = iter->v;
+}
+
+void DistanceTransform::spfa(QImage *f, double *r, DistanceMetric metric)
+{
+    list<node> q;
+    int w = f->width();
+    int h = f->height();
+    
+    for (int i = 0; i < w; i++)
+        for (int j = 0; j < h; j++)
+            if (qRed(f->pixel(i, j)) == Edge)
+            {
+                node t = {
+                    .x = i,
+                    .y = j,
+                    .v = 1
+                };
+                if (qRed(f->pixel(i, j)) == Edge)
+                {
+                    q.push_back(t);
+                    pos(r, i, j, w, h) = 0;
+                }
+            }
+
+    for (list<node>::iterator iter = q.begin(); iter != q.end(); iter++)
+    {
+        int x = iter->x;
+        int y = iter->y;
+        double v = iter->v;
+        for (int i = -1; i < 2; i++)
+            for (int j = -1; j < 2; j++)
+                if ((i != 0 || j != 0) && inRange(f, x + i, y + j) && qRed(f->pixel(x + i, y + j)) == InPic)
+                {
+                    if (v + distanceFunc[metric](i, j) < pos(r, x + i, y + j, w, h) ||
+                        pos(r, x + i, y + j, w, h) == 0)
+                    {
+                        pos(r, x + i, y + j, w, h) = v + distanceFunc[metric](i, j);
+                        node t = {
+                            .x = x + i,
+                            .y = y + j,
+                            .v = pos(r, x + i, y + j, w, h)
+                        };
+                        q.push_back(t);
+                    }
+                }
+    }
 }
 
 QImage DistanceTransform::convert(QImage *pic, DistanceMetric metric)
@@ -178,7 +223,7 @@ QImage DistanceTransform::convert(QImage *pic, DistanceMetric metric)
             }
         }
 
-    dij(f, r, metric);
+    spfa(f, r, metric);
 
     double maximum = 0;
     for (int i = 0; i < pic->width(); i++)

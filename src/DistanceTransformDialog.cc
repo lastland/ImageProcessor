@@ -1,6 +1,5 @@
 #include "DistanceTransform.hh"
 #include "DistanceTransformDialog.hh"
-#include <iostream>
 
 DistanceTransformDialog::DistanceTransformDialog(QImage *pic,
                                                  QWidget *parent,
