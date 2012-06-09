@@ -38,6 +38,7 @@ public slots:
     void algebraicOpDiv(void);
     void geometricOp(void);
     void morphologyOp(void);
+    void distanceTransform(void);
 
 protected slots:
     void disUndoAndRedo(void);

@@ -4,6 +4,7 @@
 #include "AlgebraicOp.hh"
 #include "GeometricOpDialog.hh"
 #include "MorphologyOpDialog.hh"
+#include "DistanceTransformDialog.hh"
 #include "ImageHistogram.hh"
 #include "BinaryImage.hh"
 #include "ConvolveImage.hh"
@@ -57,6 +58,8 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(geometricOp()));
     connect(actionMorphologyOp, SIGNAL(triggered()),
             this, SLOT(morphologyOp()));
+    connect(actionDistanceTransform, SIGNAL(triggered()),
+            this, SLOT(distanceTransform()));
     actionUndo->setShortcut(QKeySequence(QKeySequence::Undo));
     actionRedo->setShortcut(QKeySequence(QKeySequence::Redo));
     actionUndo->setEnabled(false);
@@ -69,6 +72,7 @@ MainWindow::MainWindow(QWidget *parent)
     actionDivision->setEnabled(false);
     actionGeometricOp->setEnabled(false);
     actionMorphologyOp->setEnabled(false);
+    actionDistanceTransform->setEnabled(false);
     
     /* Convert menu. */
     connect(actionGrayscale, SIGNAL(triggered()),
@@ -128,6 +132,7 @@ void MainWindow::setDisplayPic(QImage pic)
         actionConvolved->setEnabled(true);
         
         actionMorphologyOp->setEnabled(true);
+        actionDistanceTransform->setEnabled(true);
     }
     else
     {
@@ -136,6 +141,7 @@ void MainWindow::setDisplayPic(QImage pic)
         actionConvolved->setEnabled(false);
 
         actionMorphologyOp->setEnabled(false);
+        actionDistanceTransform->setEnabled(false);
     }
     resetHistogram();
 
@@ -282,6 +288,16 @@ void MainWindow::geometricOp(void)
 void MainWindow::morphologyOp(void)
 {
     MorphologyOpDialog *dialog = new MorphologyOpDialog(m_pic, this, Qt::Window);
+    connect(dialog, SIGNAL(imageConverted(QImage)),
+            this, SLOT(setDisplayPic(QImage)));
+    connect(dialog, SIGNAL(rejected()),
+            this, SLOT(disUndoAndRedo()));
+    dialog->exec();
+}
+
+void MainWindow::distanceTransform(void)
+{
+    DistanceTransformDialog *dialog = new DistanceTransformDialog(m_pic, this, Qt::Window);
     connect(dialog, SIGNAL(imageConverted(QImage)),
             this, SLOT(setDisplayPic(QImage)));
     connect(dialog, SIGNAL(rejected()),

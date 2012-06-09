@@ -27,6 +27,8 @@ KernelOpDialog.hh \
 Dilation.hh \
 Erosion.hh \
 MorphologyOpDialog.hh \
+DistanceTransform.hh \
+DistanceTransformDialog.hh \
 ImageHistogram.hh \
 HistogramWindow.hh \
 ThresholdSelector.hh \
@@ -47,6 +49,7 @@ FORMS += \
 PointOpDialog.ui \
 GeometricOpDialog.ui \
 MorphologyRadioWidget.ui \
+DistanceTransformDialog.ui \
 BinaryImageDialog.ui \
 GaussianFilterDialog.ui \
 MainWindow.ui
@@ -64,6 +67,8 @@ KernelOpDialog.cc \
 Dilation.cc \
 Erosion.cc \
 MorphologyOpDialog.cc \
+DistanceTransform.cc \
+DistanceTransformDialog.cc \
 ImageHistogram.cc \
 HistogramWindow.cc \
 OtsuThresholder.cc \
