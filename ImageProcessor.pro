@@ -30,6 +30,7 @@ MorphologyOpDialog.hh \
 DistanceTransform.hh \
 DistanceTransformDialog.hh \
 Skeleton.hh \
+EdgeDetection.hh \
 ImageHistogram.hh \
 HistogramWindow.hh \
 ThresholdSelector.hh \
@@ -71,6 +72,7 @@ MorphologyOpDialog.cc \
 DistanceTransform.cc \
 DistanceTransformDialog.cc \
 Skeleton.cc \
+EdgeDetection.cc \
 ImageHistogram.cc \
 HistogramWindow.cc \
 OtsuThresholder.cc \

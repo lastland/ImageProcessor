@@ -40,6 +40,7 @@ public slots:
     void morphologyOp(void);
     void distanceTransform(void);
     void skeleton(void);
+    void edgeDetection(void);
 
 protected slots:
     void disUndoAndRedo(void);

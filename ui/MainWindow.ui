@@ -84,6 +84,8 @@
     <addaction name="actionMorphologyOp"/>
     <addaction name="actionDistanceTransform"/>
     <addaction name="actionSkeleton"/>
+    <addaction name="separator"/>
+    <addaction name="actionEdgeDetection"/>
    </widget>
    <widget class="QMenu" name="menuFilters">
     <property name="title">
@@ -220,6 +222,14 @@
   <action name="actionSkeleton">
    <property name="text">
     <string>Extract &amp;Skeleton</string>
+   </property>
+  </action>
+  <action name="actionEdgeDetection">
+   <property name="text">
+    <string>&amp;Edge Detection</string>
+   </property>
+   <property name="toolTip">
+    <string>Edge Detection</string>
    </property>
   </action>
  </widget>
