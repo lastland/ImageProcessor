@@ -1,4 +1,5 @@
 #include <QtGui/QColor>
+#include "AlgebraicOp.hh"
 #include "Utility.hh"
 #include "Skeleton.hh"
 
@@ -20,34 +21,30 @@ QImage Skeleton::convert(QImage *pic)
     
     QImage *img = new QImage(*pic);
     QImage *ske = new QImage(*pic);
-    QImage *tmp = NULL;
+    QImage *tmp1 = NULL, *tmp2 = NULL;
+    QImage *ero = NULL;
 
     ske->fill(QColor(0, 0, 0).rgb());
 
     do
     {
-        delete tmp;
-        
-        QImage *tmp2 = new QImage(Erosion::convert(img, kernel));
-        tmp = new QImage(Dilation::convert(tmp2, kernel));
+        delete tmp1;
         delete tmp2;
-        
-        Utility::bitwise_not(tmp, tmp);
-        Utility::bitwise_and(img, tmp, tmp);
-        Utility::bitwise_or(ske, tmp, ske);
-        
-        delete tmp;
-        tmp = img;
-        
-        img = new QImage(Erosion::convert(tmp, kernel));
+        ero = new QImage(Erosion::convert(img, kernel));
+        tmp1 = new QImage(Dilation::convert(ero, kernel));
+        tmp2 = new QImage(AlgebraicOp::operate(*img, *tmp1, '-'));
+        Utility::bitwise_or(ske, tmp2, ske);
+        delete img;
+        img = ero;
     }
     while (!Utility::isBlack(img));
 
     QImage res = QImage(*ske);
 
     delete ske;
-    delete tmp;
-    delete img;
+    delete tmp1;
+    delete tmp2;
+    delete ero;
 
     return res;
 }
