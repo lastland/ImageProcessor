@@ -19,6 +19,7 @@ private:
     static bool isEdge(QImage *pic, int x, int y);
     static bool inRange(QImage *pic, int x, int y);
     static void calDis(QImage *f, double *r, int x, int y, DistanceMetric metric);
+    static void dij(QImage *f, double *r, DistanceMetric metric);
 };
 
 #endif /* _DISTANCETRANSFORM_H_ */

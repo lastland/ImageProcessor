@@ -15,11 +15,17 @@ using namespace std;
 #define pos(vector, x, y, w, h) \
     vector[(x) * (w) + (y)]
 
-typedef enum {
+enum {
     NotInPic,
     Edge,
     InPic
-} F;
+};
+
+typedef struct {
+    int x;
+    int y;
+    double v;
+} node;
 
 double EuclideanDistance(int dx, int dy)
 {
@@ -75,6 +81,73 @@ void DistanceTransform::calDis(QImage *f, double *r, int x, int y, DistanceMetri
     delete ys;
 }
 
+void DistanceTransform::dij(QImage *f, double *r, DistanceMetric metric)
+{
+    int w = f->width();
+    int h = f->height();
+    int leftcnt = 0;
+    list<node> accept;
+    double *record = new double[w * h];
+
+    for (int i = 0; i < w * h; i++)
+        record[i] = -1;
+
+    for (int i = 0; i < w; i++)
+        for (int j = 0; j < h; j++)
+            if (qRed(f->pixel(i, j)) == Edge || qRed(f->pixel(i, j)) == InPic)
+            {
+                node t = {
+                    .x = i,
+                    .y = j,
+                    .v = 1
+                };
+                if (qRed(f->pixel(i, j)) == Edge)
+                {
+                    accept.push_back(t);
+                    pos(record, i, j, w, h) = 1;
+                }
+                else
+                {
+                    pos(record, i, j, w, h) = 0;
+                    leftcnt++;
+                }
+            }
+
+    while (leftcnt)
+    {
+        node mininode = {
+            .x = 0,
+            .y = 0,
+            .v = 0
+        };
+        for (list<node>::iterator iter = accept.begin(); iter != accept.end(); iter++)
+        {
+            int x = iter->x;
+            int y = iter->y;
+            double v = iter->v;
+            for (int i = -1; i < 2; i++)
+                for (int j = -1; j < 2; j++)
+                    if ((i != 0 || j != 0) && inRange(f, x + i, y + j) &&
+                        pos(record, x + i, y + j, w, h) == 0)
+                    {
+                        int value = distanceFunc[metric](i, j) + v;
+                        if (value < mininode.v || mininode.v == 0)
+                        {
+                            mininode.x = x + i;
+                            mininode.y = y + j;
+                            mininode.v = value;
+                        }
+                    }
+        }
+        leftcnt--;
+        accept.push_back(mininode);
+        pos(record, mininode.x, mininode.y, w, h) = 1;
+    }
+
+    for (list<node>::iterator iter = accept.begin(); iter != accept.end(); iter++)
+        pos(r, iter->x, iter->y, w, h) = iter->v;
+}
+
 QImage DistanceTransform::convert(QImage *pic, DistanceMetric metric)
 {
     if (!Utility::isBinary(pic))
@@ -105,14 +178,7 @@ QImage DistanceTransform::convert(QImage *pic, DistanceMetric metric)
             }
         }
 
-    for (int i = 0; i < pic->width(); i++)
-        for (int j = 0; j < pic->height(); j++)
-        {
-            if (qRed(f->pixel(i, j)) == Edge)
-            {
-                calDis(f, r, i, j, metric);
-            }
-        }
+    dij(f, r, metric);
 
     double maximum = 0;
     for (int i = 0; i < pic->width(); i++)
