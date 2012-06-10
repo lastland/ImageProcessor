@@ -41,6 +41,7 @@ public slots:
     void distanceTransform(void);
     void skeleton(void);
     void edgeDetection(void);
+    void gradient(void);
 
 protected slots:
     void disUndoAndRedo(void);

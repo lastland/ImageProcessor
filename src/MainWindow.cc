@@ -7,6 +7,7 @@
 #include "DistanceTransformDialog.hh"
 #include "Skeleton.hh"
 #include "EdgeDetection.hh"
+#include "Gradient.hh"
 #include "ImageHistogram.hh"
 #include "BinaryImage.hh"
 #include "ConvolveImage.hh"
@@ -66,6 +67,8 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(skeleton()));
     connect(actionEdgeDetection, SIGNAL(triggered()),
             this, SLOT(edgeDetection()));
+    connect(actionGradient, SIGNAL(triggered()),
+            this, SLOT(gradient()));
     actionUndo->setShortcut(QKeySequence(QKeySequence::Undo));
     actionRedo->setShortcut(QKeySequence(QKeySequence::Redo));
     actionUndo->setEnabled(false);
@@ -81,6 +84,7 @@ MainWindow::MainWindow(QWidget *parent)
     actionDistanceTransform->setEnabled(false);
     actionSkeleton->setEnabled(false);
     actionEdgeDetection->setEnabled(false);
+    actionGradient->setEnabled(false);
     
     /* Convert menu. */
     connect(actionGrayscale, SIGNAL(triggered()),
@@ -143,6 +147,7 @@ void MainWindow::setDisplayPic(QImage pic)
         actionDistanceTransform->setEnabled(true);
         actionSkeleton->setEnabled(true);
         actionEdgeDetection->setEnabled(true);
+        actionGradient->setEnabled(true);
     }
     else
     {
@@ -154,6 +159,7 @@ void MainWindow::setDisplayPic(QImage pic)
         actionDistanceTransform->setEnabled(false);
         actionSkeleton->setEnabled(false);
         actionEdgeDetection->setEnabled(false);
+        actionGradient->setEnabled(false);
     }
     resetHistogram();
 
@@ -325,6 +331,11 @@ void MainWindow::skeleton(void)
 void MainWindow::edgeDetection(void)
 {
     setDisplayPic(EdgeDetection::convert(m_pic));
+}
+
+void MainWindow::gradient(void)
+{
+    setDisplayPic(Gradient::convert(m_pic));
 }
 
 void MainWindow::toBinaryImage(void)

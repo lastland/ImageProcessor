@@ -99,6 +99,7 @@
     <addaction name="actionSkeleton"/>
     <addaction name="separator"/>
     <addaction name="actionEdgeDetection"/>
+    <addaction name="actionGradient"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -236,6 +237,11 @@
    </property>
    <property name="toolTip">
     <string>Edge Detection</string>
+   </property>
+  </action>
+  <action name="actionGradient">
+   <property name="text">
+    <string>&amp;Gradient</string>
    </property>
   </action>
  </widget>
