@@ -1,6 +1,7 @@
 #ifndef _MAINWINDOW_H_
 #define _MAINWINDOW_H_
 
+#include <list>
 #include <Qt/QtGui>
 #include "HistogramWindow.hh"
 #include "ui_MainWindow.h"
@@ -40,6 +41,7 @@ public slots:
     void morphologyOp(void);
     void distanceTransform(void);
     void skeleton(void);
+    void restore(void);
     void edgeDetection(void);
     void gradient(void);
     void reconstructOBR(void);
@@ -56,6 +58,7 @@ private:
     QImage *m_prevPic;
     QPixmap *m_disPic;
     HistogramWindow *m_histogram;
+    std::list<QImage> *m_sk_list;
 
     QString getDirOfFile(QString file);
 };

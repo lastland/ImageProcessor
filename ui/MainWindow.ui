@@ -95,7 +95,7 @@
     </property>
     <widget class="QMenu" name="menu_Reconstruct">
      <property name="title">
-      <string>&amp;Reconstruct</string>
+      <string>Re&amp;construct</string>
      </property>
      <addaction name="actionReconstructOBR"/>
      <addaction name="actionReconstructCBR"/>
@@ -104,6 +104,7 @@
     <addaction name="separator"/>
     <addaction name="actionDistanceTransform"/>
     <addaction name="actionSkeleton"/>
+    <addaction name="actionRestore"/>
     <addaction name="separator"/>
     <addaction name="actionEdgeDetection"/>
     <addaction name="actionGradient"/>
@@ -260,6 +261,11 @@
   <action name="actionReconstructCBR">
    <property name="text">
     <string>&amp;CBR</string>
+   </property>
+  </action>
+  <action name="actionRestore">
+   <property name="text">
+    <string>&amp;Restore from Skeleton</string>
    </property>
   </action>
  </widget>

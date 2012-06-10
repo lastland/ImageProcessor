@@ -54,7 +54,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), Ui::MainWindow(),
       m_recentDir("."),
       m_pic(NULL), m_anotherPic(NULL), m_prevPic(NULL), m_disPic(NULL),
-      m_histogram(NULL)
+      m_histogram(NULL), m_sk_list(NULL)
 {
     setupUi(this);
 
@@ -99,6 +99,8 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(distanceTransform()));
     connect(actionSkeleton, SIGNAL(triggered()),
             this, SLOT(skeleton()));
+    connect(actionRestore, SIGNAL(triggered()),
+            this, SLOT(restore()));
     connect(actionEdgeDetection, SIGNAL(triggered()),
             this, SLOT(edgeDetection()));
     connect(actionGradient, SIGNAL(triggered()),
@@ -121,6 +123,7 @@ MainWindow::MainWindow(QWidget *parent)
     actionMorphologyOp->setEnabled(false);
     actionDistanceTransform->setEnabled(false);
     actionSkeleton->setEnabled(false);
+    actionRestore->setEnabled(false);
     actionEdgeDetection->setEnabled(false);
     actionGradient->setEnabled(false);
     actionReconstructOBR->setEnabled(false);
@@ -156,6 +159,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow(void)
 {
+    delete m_sk_list;
 }
 
 QString MainWindow::getDirOfFile(QString file)
@@ -365,7 +369,14 @@ void MainWindow::distanceTransform(void)
 
 void MainWindow::skeleton(void)
 {
-    setDisplayPic(Skeleton::convert(m_pic));
+    setDisplayPic(Skeleton::convert(m_pic, &m_sk_list));
+    actionRestore->setEnabled(true);
+}
+
+void MainWindow::restore(void)
+{
+    setDisplayPic(Skeleton::restore(m_pic, m_sk_list));
+    actionRestore->setEnabled(false);
 }
 
 void MainWindow::edgeDetection(void)
