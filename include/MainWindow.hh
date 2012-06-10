@@ -42,6 +42,7 @@ public slots:
     void skeleton(void);
     void edgeDetection(void);
     void gradient(void);
+    void reconstruct(void);
 
 protected slots:
     void disUndoAndRedo(void);

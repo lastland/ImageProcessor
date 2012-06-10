@@ -33,6 +33,7 @@ DistanceTransformDialog.hh \
 Skeleton.hh \
 EdgeDetection.hh \
 Gradient.hh \
+Reconstruct.hh \
 ImageHistogram.hh \
 HistogramWindow.hh \
 ThresholdSelector.hh \
@@ -77,6 +78,7 @@ DistanceTransformDialog.cc \
 Skeleton.cc \
 EdgeDetection.cc \
 Gradient.cc \
+Reconstruct.cc \
 ImageHistogram.cc \
 HistogramWindow.cc \
 OtsuThresholder.cc \

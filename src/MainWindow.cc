@@ -9,6 +9,7 @@
 #include "Skeleton.hh"
 #include "EdgeDetection.hh"
 #include "Gradient.hh"
+#include "Reconstruct.hh"
 #include "ImageHistogram.hh"
 #include "BinaryImage.hh"
 #include "ConvolveImage.hh"
@@ -40,6 +41,7 @@
         actionDistanceTransform, \
         actionSkeleton, \
         actionEdgeDetection, \
+        actionReconstruct,   \
         NULL \
     }; \
     QAction *grayAndBinaryActions[] = { \
@@ -100,6 +102,8 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(edgeDetection()));
     connect(actionGradient, SIGNAL(triggered()),
             this, SLOT(gradient()));
+    connect(actionReconstruct, SIGNAL(triggered()),
+            this, SLOT(reconstruct()));
     actionUndo->setShortcut(QKeySequence(QKeySequence::Undo));
     actionRedo->setShortcut(QKeySequence(QKeySequence::Redo));
     actionUndo->setEnabled(false);
@@ -116,6 +120,7 @@ MainWindow::MainWindow(QWidget *parent)
     actionSkeleton->setEnabled(false);
     actionEdgeDetection->setEnabled(false);
     actionGradient->setEnabled(false);
+    actionReconstruct->setEnabled(false);
     
     /* Convert menu. */
     connect(actionGrayscale, SIGNAL(triggered()),
@@ -367,6 +372,11 @@ void MainWindow::edgeDetection(void)
 void MainWindow::gradient(void)
 {
     setDisplayPic(Gradient::convert(m_pic));
+}
+
+void MainWindow::reconstruct(void)
+{
+    setDisplayPic(Reconstruct::convert(m_pic));
 }
 
 void MainWindow::toBinaryImage(void)
