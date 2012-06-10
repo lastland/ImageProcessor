@@ -11,15 +11,29 @@ LIBS += -lqwt
 # Input
 INCLUDEPATH += include
 VPATH += include src ui
+
 HEADERS += \
+Utility.hh \
+Kernel.hh \
 Grayscale.hh \
 ConvertDialog.hh \
+MatrixDialog.hh \
 GaussianFilterDialog.hh \
 PointOpDialog.hh \
 AlgebraicOp.hh \
 GeometricScale.hh \
 GeometricRotate.hh \
 GeometricOpDialog.hh \
+KernelOpDialog.hh \
+Dilation.hh \
+Erosion.hh \
+MorphologyOpDialog.hh \
+DistanceTransform.hh \
+DistanceTransformDialog.hh \
+Skeleton.hh \
+EdgeDetection.hh \
+Gradient.hh \
+Reconstruct.hh \
 ImageHistogram.hh \
 HistogramWindow.hh \
 ThresholdSelector.hh \
@@ -39,18 +53,32 @@ MainWindow.hh
 FORMS += \
 PointOpDialog.ui \
 GeometricOpDialog.ui \
+MorphologyRadioWidget.ui \
+DistanceTransformDialog.ui \
 BinaryImageDialog.ui \
 GaussianFilterDialog.ui \
 MainWindow.ui
 
 SOURCES += \
+Kernel.cc \
 GaussianMatrix.cc \
 ConvertDialog.cc \
+MatrixDialog.cc \
 PointOpDialog.cc \
 AlgebraicOp.cc \
 GeometricScale.cc \
 GeometricRotate.cc \
 GeometricOpDialog.cc \
+KernelOpDialog.cc \
+Dilation.cc \
+Erosion.cc \
+MorphologyOpDialog.cc \
+DistanceTransform.cc \
+DistanceTransformDialog.cc \
+Skeleton.cc \
+EdgeDetection.cc \
+Gradient.cc \
+Reconstruct.cc \
 ImageHistogram.cc \
 HistogramWindow.cc \
 OtsuThresholder.cc \

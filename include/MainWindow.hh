@@ -1,6 +1,7 @@
 #ifndef _MAINWINDOW_H_
 #define _MAINWINDOW_H_
 
+#include <list>
 #include <Qt/QtGui>
 #include "HistogramWindow.hh"
 #include "ui_MainWindow.h"
@@ -37,6 +38,14 @@ public slots:
     void algebraicOpMul(void);
     void algebraicOpDiv(void);
     void geometricOp(void);
+    void morphologyOp(void);
+    void distanceTransform(void);
+    void skeleton(void);
+    void restore(void);
+    void edgeDetection(void);
+    void gradient(void);
+    void reconstructOBR(void);
+    void reconstructCBR(void);
 
 protected slots:
     void disUndoAndRedo(void);
@@ -49,6 +58,7 @@ private:
     QImage *m_prevPic;
     QPixmap *m_disPic;
     HistogramWindow *m_histogram;
+    std::list<QImage> *m_sk_list;
 
     QString getDirOfFile(QString file);
 };

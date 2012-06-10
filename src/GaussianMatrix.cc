@@ -3,9 +3,9 @@
 
 #define PI 3.14159265358979
 
-Matrix GaussianMatrix::getMatrix(double radius)
+G_Matrix GaussianMatrix::getMatrix(double radius)
 {
-    Matrix matrix;
+    G_Matrix matrix;
     double C = 1 / (2 * PI * radius * radius);
     for (int i = 0; i < GAUSS_N; i++)
         for (int j = 0; j < GAUSS_N; j++)

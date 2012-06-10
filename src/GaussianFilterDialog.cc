@@ -34,7 +34,7 @@ int GaussianFilterDialog::exec(void)
     return ConvertDialog::exec();
 }
 
-void GaussianFilterDialog::convert(Matrix matrix)
+void GaussianFilterDialog::convert(G_Matrix matrix)
 {
     double nmatrix[n][n];
     for (int i = 0; i < n; i++)

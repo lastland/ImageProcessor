@@ -89,10 +89,32 @@
     <addaction name="actionMean"/>
     <addaction name="actionMedian"/>
    </widget>
+   <widget class="QMenu" name="menuMorphology">
+    <property name="title">
+     <string>&amp;Morphology</string>
+    </property>
+    <widget class="QMenu" name="menu_Reconstruct">
+     <property name="title">
+      <string>Re&amp;construct</string>
+     </property>
+     <addaction name="actionReconstructOBR"/>
+     <addaction name="actionReconstructCBR"/>
+    </widget>
+    <addaction name="actionMorphologyOp"/>
+    <addaction name="separator"/>
+    <addaction name="actionDistanceTransform"/>
+    <addaction name="actionSkeleton"/>
+    <addaction name="actionRestore"/>
+    <addaction name="separator"/>
+    <addaction name="actionEdgeDetection"/>
+    <addaction name="actionGradient"/>
+    <addaction name="menu_Reconstruct"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuConvert"/>
    <addaction name="menuFilters"/>
+   <addaction name="menuMorphology"/>
    <addaction name="menuWindow"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
@@ -103,7 +125,7 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="actionOpen"/>
    <addaction name="actionSave"/>
@@ -201,6 +223,49 @@
   <action name="actionDivision">
    <property name="text">
     <string>&amp;Division</string>
+   </property>
+  </action>
+  <action name="actionMorphologyOp">
+   <property name="text">
+    <string>&amp;Morphology Operations</string>
+   </property>
+  </action>
+  <action name="actionDistanceTransform">
+   <property name="text">
+    <string>&amp;Distance Transform</string>
+   </property>
+  </action>
+  <action name="actionSkeleton">
+   <property name="text">
+    <string>Extract &amp;Skeleton</string>
+   </property>
+  </action>
+  <action name="actionEdgeDetection">
+   <property name="text">
+    <string>&amp;Edge Detection</string>
+   </property>
+   <property name="toolTip">
+    <string>Edge Detection</string>
+   </property>
+  </action>
+  <action name="actionGradient">
+   <property name="text">
+    <string>&amp;Gradient</string>
+   </property>
+  </action>
+  <action name="actionReconstructOBR">
+   <property name="text">
+    <string>&amp;OBR</string>
+   </property>
+  </action>
+  <action name="actionReconstructCBR">
+   <property name="text">
+    <string>&amp;CBR</string>
+   </property>
+  </action>
+  <action name="actionRestore">
+   <property name="text">
+    <string>&amp;Restore from Skeleton</string>
    </property>
   </action>
  </widget>
