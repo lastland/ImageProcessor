@@ -68,6 +68,16 @@ public:
                 res->setPixel(i, j, QColor(255, 255, 255).rgb());
         }
     }
+
+    static void mask(QImage *pic, QImage *mask_pic, QImage *res)
+    {
+        iter_pic(i, j, pic)
+        {
+            QRgb a = pic->pixel(i, j);
+            QRgb b = mask_pic->pixel(i, j);
+            res->setPixel(i, j, qGreen(a) < qGreen(b) ? a : b);
+        }
+    }
 };
 
 #endif /* _UTILITY_H_ */

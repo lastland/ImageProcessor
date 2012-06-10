@@ -9,5 +9,6 @@ struct Kernel
 };
 
 void MakeKernel3X3Cross(Kernel*);
+void MakeKernelZero(Kernel*);
 
 #endif /* _KERNEL_H_ */

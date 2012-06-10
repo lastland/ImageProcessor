@@ -93,6 +93,13 @@
     <property name="title">
      <string>&amp;Morphology</string>
     </property>
+    <widget class="QMenu" name="menu_Reconstruct">
+     <property name="title">
+      <string>&amp;Reconstruct</string>
+     </property>
+     <addaction name="actionReconstructOBR"/>
+     <addaction name="actionReconstructCBR"/>
+    </widget>
     <addaction name="actionMorphologyOp"/>
     <addaction name="separator"/>
     <addaction name="actionDistanceTransform"/>
@@ -100,7 +107,7 @@
     <addaction name="separator"/>
     <addaction name="actionEdgeDetection"/>
     <addaction name="actionGradient"/>
-    <addaction name="actionReconstruct"/>
+    <addaction name="menu_Reconstruct"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -245,9 +252,14 @@
     <string>&amp;Gradient</string>
    </property>
   </action>
-  <action name="actionReconstruct">
+  <action name="actionReconstructOBR">
    <property name="text">
-    <string>&amp;Reconstruct</string>
+    <string>&amp;OBR</string>
+   </property>
+  </action>
+  <action name="actionReconstructCBR">
+   <property name="text">
+    <string>&amp;CBR</string>
    </property>
   </action>
  </widget>

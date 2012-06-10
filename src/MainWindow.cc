@@ -41,11 +41,12 @@
         actionDistanceTransform, \
         actionSkeleton, \
         actionEdgeDetection, \
-        actionReconstruct,   \
         NULL \
     }; \
     QAction *grayAndBinaryActions[] = { \
         actionMorphologyOp, \
+        actionReconstructOBR,   \
+        actionReconstructCBR,   \
         NULL \
     };
 
@@ -102,8 +103,10 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(edgeDetection()));
     connect(actionGradient, SIGNAL(triggered()),
             this, SLOT(gradient()));
-    connect(actionReconstruct, SIGNAL(triggered()),
-            this, SLOT(reconstruct()));
+    connect(actionReconstructOBR, SIGNAL(triggered()),
+            this, SLOT(reconstructOBR()));
+    connect(actionReconstructCBR, SIGNAL(triggered()),
+            this, SLOT(reconstructCBR()));
     actionUndo->setShortcut(QKeySequence(QKeySequence::Undo));
     actionRedo->setShortcut(QKeySequence(QKeySequence::Redo));
     actionUndo->setEnabled(false);
@@ -120,7 +123,8 @@ MainWindow::MainWindow(QWidget *parent)
     actionSkeleton->setEnabled(false);
     actionEdgeDetection->setEnabled(false);
     actionGradient->setEnabled(false);
-    actionReconstruct->setEnabled(false);
+    actionReconstructOBR->setEnabled(false);
+    actionReconstructCBR->setEnabled(false);
     
     /* Convert menu. */
     connect(actionGrayscale, SIGNAL(triggered()),
@@ -374,11 +378,15 @@ void MainWindow::gradient(void)
     setDisplayPic(Gradient::convert(m_pic));
 }
 
-void MainWindow::reconstruct(void)
+void MainWindow::reconstructOBR(void)
 {
-    setDisplayPic(Reconstruct::convert(m_pic));
+    setDisplayPic(Reconstruct::convert(m_pic, OBR));
 }
 
+void MainWindow::reconstructCBR(void)
+{
+    setDisplayPic(Reconstruct::convert(m_pic, CBR));
+}
 void MainWindow::toBinaryImage(void)
 {
     BinaryImage *dialog = new BinaryImage(m_pic, this, Qt::Window);
