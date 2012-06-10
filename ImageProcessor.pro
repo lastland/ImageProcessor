@@ -14,6 +14,7 @@ VPATH += include src ui
 
 HEADERS += \
 Utility.hh \
+Kernel.hh \
 Grayscale.hh \
 ConvertDialog.hh \
 MatrixDialog.hh \
@@ -57,6 +58,7 @@ GaussianFilterDialog.ui \
 MainWindow.ui
 
 SOURCES += \
+Kernel.cc \
 GaussianMatrix.cc \
 ConvertDialog.cc \
 MatrixDialog.cc \

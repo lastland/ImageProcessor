@@ -1,18 +1,16 @@
 #ifndef _MATRIXDIALOG_H_
 #define _MATRIXDIALOG_H_
 
+#include "Kernel.hh"
 #include "ConvertDialog.hh"
 #include <QtGui/QDialog>
 #include <QtGui/QGridLayout>
 #include <QtGui/QImage>
 #include <QtGui/QSpinBox>
 
-const int _MX_size = 5;
+#define _MX_size kernel_size
 
-typedef struct
-{
-    int value[_MX_size][_MX_size];
-} Matrix;
+typedef struct Kernel Matrix;
 
 class MatrixDialog : public ConvertDialog
 {
