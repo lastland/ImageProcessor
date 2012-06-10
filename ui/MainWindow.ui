@@ -80,12 +80,6 @@
     <addaction name="actionPointOp"/>
     <addaction name="menuAlgebraicOp"/>
     <addaction name="actionGeometricOp"/>
-    <addaction name="separator"/>
-    <addaction name="actionMorphologyOp"/>
-    <addaction name="actionDistanceTransform"/>
-    <addaction name="actionSkeleton"/>
-    <addaction name="separator"/>
-    <addaction name="actionEdgeDetection"/>
    </widget>
    <widget class="QMenu" name="menuFilters">
     <property name="title">
@@ -95,10 +89,22 @@
     <addaction name="actionMean"/>
     <addaction name="actionMedian"/>
    </widget>
+   <widget class="QMenu" name="menuMorphology">
+    <property name="title">
+     <string>&amp;Morphology</string>
+    </property>
+    <addaction name="actionMorphologyOp"/>
+    <addaction name="separator"/>
+    <addaction name="actionDistanceTransform"/>
+    <addaction name="actionSkeleton"/>
+    <addaction name="separator"/>
+    <addaction name="actionEdgeDetection"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuConvert"/>
    <addaction name="menuFilters"/>
+   <addaction name="menuMorphology"/>
    <addaction name="menuWindow"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
