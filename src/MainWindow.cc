@@ -1,4 +1,5 @@
 #include <QtGui/QKeySequence>
+#include "Utility.hh"
 #include "Grayscale.hh"
 #include "PointOpDialog.hh"
 #include "AlgebraicOp.hh"
@@ -15,6 +16,36 @@
 #include "MeanFilter.hh"
 #include "MedianFilter.hh"
 #include "MainWindow.hh"
+
+#define set_actions(actions, flag) \
+    do \
+    { \
+    for (int i = 0; (actions)[i] != NULL; i++)  \
+        (actions)[i]->setEnabled(flag); \
+    } \
+    while (0)
+
+#define set_up_actions \
+    QAction *coloredActions[] = { \
+        actionGrayscale, \
+        NULL \
+    }; \
+    QAction *grayscaleActions[] = { \
+        actionBinary, \
+        actionConvolved, \
+        actionGradient, \
+        NULL \
+    }; \
+    QAction *binaryActions[] = { \
+        actionDistanceTransform, \
+        actionSkeleton, \
+        actionEdgeDetection, \
+        NULL \
+    }; \
+    QAction *grayAndBinaryActions[] = { \
+        actionMorphologyOp, \
+        NULL \
+    };
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), Ui::MainWindow(),
@@ -128,6 +159,8 @@ QString MainWindow::getDirOfFile(QString file)
 
 void MainWindow::setDisplayPic(QImage pic)
 {
+    set_up_actions;
+    
     delete m_prevPic;
     if (m_pic != NULL)
         m_prevPic = new QImage(*m_pic);
@@ -139,27 +172,25 @@ void MainWindow::setDisplayPic(QImage pic)
     actionRedo->setEnabled(false);
     if (m_pic->isGrayscale())
     {
-        actionGrayscale->setEnabled(false);
-        actionBinary->setEnabled(true);
-        actionConvolved->setEnabled(true);
-        
-        actionMorphologyOp->setEnabled(true);
-        actionDistanceTransform->setEnabled(true);
-        actionSkeleton->setEnabled(true);
-        actionEdgeDetection->setEnabled(true);
-        actionGradient->setEnabled(true);
+        set_actions(coloredActions, false);
+        set_actions(grayAndBinaryActions, true);
+        if (Utility::isBinary(m_pic))
+        {
+            set_actions(grayscaleActions, false);
+            set_actions(binaryActions, true);
+        }
+        else
+        {
+            set_actions(grayscaleActions, true);
+            set_actions(binaryActions, false);            
+        }
     }
     else
     {
-        actionGrayscale->setEnabled(true);
-        actionBinary->setEnabled(false);
-        actionConvolved->setEnabled(false);
-
-        actionMorphologyOp->setEnabled(false);
-        actionDistanceTransform->setEnabled(false);
-        actionSkeleton->setEnabled(false);
-        actionEdgeDetection->setEnabled(false);
-        actionGradient->setEnabled(false);
+        set_actions(coloredActions, true);
+        set_actions(grayAndBinaryActions, false);
+        set_actions(grayscaleActions, false);
+        set_actions(binaryActions, false);
     }
     resetHistogram();
 
