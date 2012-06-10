@@ -95,11 +95,10 @@ void DistanceTransform::dij(QImage *f, double *r, DistanceMetric metric)
         for (int j = 0; j < h; j++)
             if (qRed(f->pixel(i, j)) == Edge || qRed(f->pixel(i, j)) == InPic)
             {
-                node t = {
-                    .x = i,
-                    .y = j,
-                    .v = 1
-                };
+                node t;
+                t.x = i;
+                t.y = j;
+                t.v = 1;
                 if (qRed(f->pixel(i, j)) == Edge)
                 {
                     accept.push_back(t);
@@ -114,11 +113,10 @@ void DistanceTransform::dij(QImage *f, double *r, DistanceMetric metric)
 
     while (leftcnt)
     {
-        node mininode = {
-            .x = 0,
-            .y = 0,
-            .v = 0
-        };
+        node mininode;
+        mininode.x = 0;
+        mininode.y = 0;
+        mininode.v = 0;
         for (list<node>::iterator iter = accept.begin(); iter != accept.end(); iter++)
         {
             int x = iter->x;
@@ -157,11 +155,10 @@ void DistanceTransform::spfa(QImage *f, double *r, DistanceMetric metric)
         for (int j = 0; j < h; j++)
             if (qRed(f->pixel(i, j)) == Edge)
             {
-                node t = {
-                    .x = i,
-                    .y = j,
-                    .v = 1
-                };
+                node t;
+                t.x = i;
+                t.y = j;
+                t.v = 1;
                 if (qRed(f->pixel(i, j)) == Edge)
                 {
                     q.push_back(t);
@@ -182,11 +179,10 @@ void DistanceTransform::spfa(QImage *f, double *r, DistanceMetric metric)
                         pos(r, x + i, y + j, w, h) == 0)
                     {
                         pos(r, x + i, y + j, w, h) = v + distanceFunc[metric](i, j);
-                        node t = {
-                            .x = x + i,
-                            .y = y + j,
-                            .v = pos(r, x + i, y + j, w, h)
-                        };
+                        node t;
+                        t.x = x + i;
+                        t.y = y + j;
+                        t.v = pos(r, x + i, y + j, w, h);
                         q.push_back(t);
                     }
                 }
