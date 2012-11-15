@@ -17,7 +17,7 @@ private:
                           int w, int h);
     static void copyPartTo(QImage *a, int asw, int ash,
                        QImage *b, int bsw, int bsh,
-                       int w, int h);
+                           int w, int h, int ow, int oh);
 };
 
 #endif /* _TEXTURESYNTHESIZE_H_ */
