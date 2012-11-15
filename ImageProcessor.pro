@@ -48,6 +48,8 @@ ConvolveImage.hh \
 GaussianMatrix.hh \
 MeanFilter.hh \
 MedianFilter.hh \
+TextureSynthesize.hh \
+TextureSynthesizeDialog.hh \
 MainWindow.hh
 
 FORMS += \
@@ -57,6 +59,7 @@ MorphologyRadioWidget.ui \
 DistanceTransformDialog.ui \
 BinaryImageDialog.ui \
 GaussianFilterDialog.ui \
+TextureSynthesizeDialog.ui \
 MainWindow.ui
 
 SOURCES += \
@@ -89,5 +92,7 @@ ConvolveImage.cc \
 GaussianFilterDialog.cc \
 MeanFilter.cc \
 MedianFilter.cc \
+TextureSynthesize.cc \
+TextureSynthesizeDialog.cc \
 MainWindow.cc \
 main.cc

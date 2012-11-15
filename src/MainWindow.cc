@@ -16,6 +16,7 @@
 #include "GaussianFilterDialog.hh"
 #include "MeanFilter.hh"
 #include "MedianFilter.hh"
+#include "TextureSynthesizeDialog.hh"
 #include "MainWindow.hh"
 
 #define set_actions(actions, flag) \
@@ -155,6 +156,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(actionHistogram, SIGNAL(triggered()),
             this, SLOT(imageHistogram()));
     actionHistogram->setEnabled(false);
+
+    /* Texture menu. */
+    connect(actionSynthesize, SIGNAL(triggered()),
+            this, SLOT(synthesize()));
+    actionSynthesize->setEnabled(false);
 }
 
 MainWindow::~MainWindow(void)
@@ -206,6 +212,7 @@ void MainWindow::setDisplayPic(QImage pic)
         set_actions(binaryActions, false);
     }
     resetHistogram();
+    actionSynthesize->setEnabled(true);
 
     displayPic();
 }
@@ -398,6 +405,17 @@ void MainWindow::reconstructCBR(void)
 {
     setDisplayPic(Reconstruct::convert(m_pic, CBR));
 }
+
+void MainWindow::synthesize(void)
+{
+    TextureSynthesizeDialog *dialog = new TextureSynthesizeDialog(m_pic, this, Qt::Window);
+    connect(dialog, SIGNAL(imageConverted(QImage)),
+            this, SLOT(setDisplayPic(QImage)));
+    connect(dialog, SIGNAL(rejected()),
+            this, SLOT(disUndoAndRedo()));
+    dialog->exec();
+}
+
 void MainWindow::toBinaryImage(void)
 {
     BinaryImage *dialog = new BinaryImage(m_pic, this, Qt::Window);

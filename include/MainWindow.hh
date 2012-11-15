@@ -47,6 +47,8 @@ public slots:
     void reconstructOBR(void);
     void reconstructCBR(void);
 
+    void synthesize(void);
+
 protected slots:
     void disUndoAndRedo(void);
     

@@ -34,7 +34,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -110,11 +110,18 @@
     <addaction name="actionGradient"/>
     <addaction name="menu_Reconstruct"/>
    </widget>
+   <widget class="QMenu" name="menu_Texture">
+    <property name="title">
+     <string>&amp;Texture</string>
+    </property>
+    <addaction name="actionSynthesize"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuConvert"/>
    <addaction name="menuFilters"/>
    <addaction name="menuMorphology"/>
+   <addaction name="menu_Texture"/>
    <addaction name="menuWindow"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
@@ -266,6 +273,11 @@
   <action name="actionRestore">
    <property name="text">
     <string>&amp;Restore from Skeleton</string>
+   </property>
+  </action>
+  <action name="actionSynthesize">
+   <property name="text">
+    <string>&amp;Synthesize</string>
    </property>
   </action>
  </widget>
