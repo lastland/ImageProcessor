@@ -172,8 +172,8 @@ void TextureSynthesize::copyPartTo(QImage *a, int asw, int ash,
                     f[t] = f[t - 1 + h];
                     p[t] = t - 1 + h;
                 }
-                f[t] += errorValue(a->pixel(asw + i, ash + j),
-                                   b->pixel(bsw + i, bsh + j));
+                f[t] += errorValue(a->pixel(asw + j, ash + i),
+                                   b->pixel(bsw + j, bsh + i));
             }
         }
         int min = f[h - 1];
